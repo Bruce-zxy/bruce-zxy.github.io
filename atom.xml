@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.zhuxiaoyi.com/"/>
+  <updated>2018-06-25T09:59:30.956Z</updated>
+  <id>http://blog.zhuxiaoyi.com/</id>
+  
+  <author>
+    <name>HadesZ</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS 7上安装配置Nginx</title>
+    <link href="http://blog.zhuxiaoyi.com/2018/06/25/CentOS%207%E4%B8%8A%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AENginx/"/>
+    <id>http://blog.zhuxiaoyi.com/2018/06/25/CentOS 7上安装配置Nginx/</id>
+    <published>2018-06-25T09:54:04.288Z</published>
+    <updated>2018-06-25T09:59:30.956Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#1&quot;&gt;一、预备工作&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#1.1&quot;&gt;1.1 gcc
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）</title>
+    <link href="http://blog.zhuxiaoyi.com/2018/06/25/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%99%EF%BC%88%E4%B8%89%EF%BC%89%20-%20%E5%9C%A8Ubuntu%2016.04%E4%B8%8A%E6%90%AD%E5%BB%BAWeb%E7%8E%AF%E5%A2%83%EF%BC%88LAMP%EF%BC%89/"/>
+    <id>http://blog.zhuxiaoyi.com/2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/</id>
+    <published>2018-06-25T09:54:04.286Z</published>
+    <updated>2018-06-25T10:00:41.914Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;em&gt;接下来我们开始在服务器上搭建Web环境&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;在Linux上Web环境主要境分为LAMP和LNMP两种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LAMP 是指Linux + Apache + Mysql +PHP&lt;/li&gt;
+&lt;li&gt;LNMP 是指Linux
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>如何建站（一） - 建站必备知识及域名与服务器的购买</title>
+    <link href="http://blog.zhuxiaoyi.com/2018/06/25/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%99%EF%BC%88%E4%B8%80%EF%BC%89%20-%20%E5%BB%BA%E7%AB%99%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86%E5%8F%8A%E5%9F%9F%E5%90%8D%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%B4%AD%E4%B9%B0/"/>
+    <id>http://blog.zhuxiaoyi.com/2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/</id>
+    <published>2018-06-25T09:54:00.286Z</published>
+    <updated>2018-06-25T10:00:41.899Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;一、序言&quot;&gt;&lt;a href=&quot;#一、序言&quot; class=&quot;headerlink&quot; title=&quot;一、序言&quot;&gt;&lt;/a&gt;一、序言&lt;/h1&gt;&lt;h2 id=&quot;1-1-明确你的建站目的&quot;&gt;&lt;a href=&quot;#1-1-明确你的建站目的&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://blog.zhuxiaoyi.com/2018/06/25/hello-world/"/>
+    <id>http://blog.zhuxiaoyi.com/2018/06/25/hello-world/</id>
+    <published>2018-06-25T08:34:41.295Z</published>
+    <updated>2018-06-25T08:34:41.295Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

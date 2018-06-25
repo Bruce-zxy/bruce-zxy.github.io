@@ -1,0 +1,910 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+
+
+
+<head>
+  <script>
+    window.mduiVersion = "2.0.0"
+    window.oldVersion = [
+     '1.4.1',
+     '1.4.5',
+     'unknownVersion'
+    ]
+    window.themeRuntime = {
+      root: "/",
+      scriptsMap: {},
+      init: {
+        status: false
+      },
+      commentRest: {
+        status: false
+      }
+    };
+    console.info("%cCopyright © 2017 Halyul\n"+'Theme Version: 2.0.0'+'%c\nhttps://github.com/Halyul/hexo-theme-mdui',"font-size: 14px;color: #3F51B5;","color: #448AFF;text-decoration: none");
+  </script>
+  <!--
+        © HEXO MDUI Theme
+        https://github.com/Halyul/hexo-theme-mdui
+        Version: 2.0.0 -->
+
+  <meta charset="UTF-8">
+  <title>如何建站（一） - 建站必备知识及域名与服务器的购买 - Hexo</title>
+
+  <!-- Favicons -->
+  <link rel="icon shortcut" type="image/ico" href="/images/favicon.png">
+  <link rel="icon" sizes="192x192" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <!-- Meta & Info -->
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta name="theme-color" content="#fff">
+
+  <meta name="author" content="HadesZ">
+  
+  <meta name="keywords" content="blog, hexo, mdui">
+
+  <!--iOS -->
+  <meta name="apple-mobile-web-app-title" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="480">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- The Open Graph protocol -->
+  <meta property="og:url" content="http://blog.zhuxiaoyi.com">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" content="如何建站（一） - 建站必备知识及域名与服务器的购买 - Hexo | Hexo">
+  <meta property="og:image" content="/images/favicon.png" />
+  
+
+  
+
+  
+
+  <!-- Import CSS -->
+  
+    <link rel="stylesheet" href="/css/mdui.css">
+  
+
+  
+
+</head>
+
+
+<body class="mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+
+  <style>
+    #spinner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+          opacity: 1;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+          transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+    main {
+      opacity: 0;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      display: none;
+    }
+  </style>
+  <div id="spinner">
+    <style>
+      .spinner {
+
+      -webkit-animation: rotator 1.4s linear infinite;
+              animation: rotator 1.4s linear infinite;
+      }
+
+      @-webkit-keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      @keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      .path {
+      stroke-dasharray: 187;
+      stroke-dashoffset: 0;
+      -webkit-transform-origin: center;
+              transform-origin: center;
+      -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+              animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+      }
+
+      @-webkit-keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+
+      @keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+    </style>
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
+
+  <main>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-color-white mdui-shadow-0 theme-appbar">
+  <div class="mdui-toolbar theme-toolbar-top">
+    
+      <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--arrow">
+        <i class="mdui-icon">
+          <span></span>
+        </i>
+      </a>
+    
+  </div>
+  <div class="mdui-toolbar theme-toolbar-bottom">
+    <span class="theme-toolbar-bottom__title">Hexo</span>
+    
+      <a href="/search.html" class="mdui-textfield-icon mdui-btn mdui-btn-icon theme-toolbar-bottom__search">
+        <i class="mdui-icon material-icons">&#xe8b6;</i>
+      </a>
+    
+  </div>
+  <div class="mdui-progress theme-appbar__progress" id="progressBar">
+    <div class="mdui-progress-indeterminate"></div>
+  </div>
+</div>
+
+    <div class="mdui-drawer mdui-drawer-full-height theme-drawer" id="drawer">
+  <!-- header -->
+  <div class="theme-drawer__header">
+  <div class="theme-drawer__header__layer-1">
+    <div class="mdui-toolbar theme-toolbar-top">
+      
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--drawer theme-appbar__burger--arrow" id="drawer-back">
+          <i class="mdui-icon">
+            <span></span>
+          </i>
+        </a>
+      
+    </div>
+    <div class="mdui-toolbar theme-toolbar-bottom">
+      <span class="theme-toolbar-bottom__title">Hexo</span>
+    </div>
+  </div>
+  <div class="theme-drawer__header__layer-2" style="background-image: url(/images/bg.png)">
+    <img class="mdui-img-circle theme-drawer__header__layer-2__user__avatar" src="/images/avatar.png"/>
+    <div class="theme-drawer__header__layer-2__user__info">
+      <div class="theme-drawer__header__layer-2__user__info__author mdui-text-color-white-text">
+        HadesZ
+      </div>
+      <div class="theme-drawer__header__layer-2__user__info__slogan mdui-text-color-white-secondary">
+        I&#39;m your slogan!
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="theme-drawer__warpper">
+    <!-- content -->
+    <div class="theme-drawer__warpper__content">
+  <ul class="mdui-list">
+    <a href="/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe88a;</i>
+      <div class="mdui-list-item-content">Index</div>
+    </a>
+    <a href="/archives/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe149;</i>
+      <div class="mdui-list-item-content">Archives</div>
+    </a>
+    <ul class="mdui-list mdui-collapse" mdui-collapse="{accordion: true}" mdui-collapse>
+      
+      
+      <div class="mdui-collapse-item ">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+          <i class="mdui-list-item-icon mdui-icon material-icons">&#xe916;</i>
+          <div class="mdui-list-item-content">Years</div>
+          <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-list">
+          
+          
+            <a href="/archives/2018/" class="mdui-list-item mdui-ripple">
+              2018
+            </a>
+          
+        </div>
+      </div>
+    </ul>
+  </ul>
+  
+    <div class="mdui-divider"></div>
+    <ul class="mdui-list" mdui-collapse="{accordion: true}" mdui-collapse>
+      
+        
+          
+            <a href="/friends" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">&#xe0ba;</i>
+              
+              
+              <div class="mdui-list-item-content">Test1</div>
+            </a>
+        
+      
+        
+          
+            <a href="/apply-for-link" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-child mdui-text-center"></i>
+              
+              
+              
+              <div class="mdui-list-item-content">Test2</div>
+            </a>
+        
+      
+        
+          
+            <a href="/galleries" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">Test3</div>
+            </a>
+        
+      
+        
+          <div class="mdui-collapse-item">
+            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">Test4</div>
+              <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+            </div>
+            <div class="mdui-collapse-item-body mdui-list">
+              
+                
+                  <a href="/myfriends" class="mdui-list-item mdui-ripple mdui-ripple-white" target="_self">
+                
+                    TEST1
+                  </a>
+              
+                
+                  <a href="/timeline" class="mdui-list-item mdui-ripple mdui-ripple-white" target="_self">
+                
+                    TEST2
+                  </a>
+              
+            </div>
+          </div>
+        
+      
+    </ul>
+  
+</div>
+
+    <div class="theme-spacer"></div>
+    <!-- footer -->
+    <div class="theme-drawer__warpper__footer">
+  <div class="mdui-typo mdui-typo-caption-opacity">
+    Powered by <a href="http://hexo.io" target="_blank">Hexo</a>
+    <br />
+    Theme - <a href="//github.com/Halyul/hexo-theme-mdui" target="_blank">Halyul/MDUI</a>
+    <br />
+    <span>
+      Copyright ©
+      <span year></span>
+      HadesZ
+    </span>
+    
+    
+      <br />
+      <span>
+        Last Updated: 6月 25, 2018
+      </span>
+    
+    
+  </div>
+</div>
+<script type="text/javascript">
+  var copyrightNow = new Date().getFullYear();
+  var textContent = document.querySelector('span[year]')
+  
+    textContent.textContent = copyrightNow
+  
+</script>
+
+  </div>
+</div>
+
+    <div id="top"></div>
+
+    <script src="/js/lightgallery.min.js"></script>
+
+    <div id="barba-wrapper">
+      <div class="barba-container"  data-namespace="post">
+        
+
+
+
+  <link rel="stylesheet" href="/css/prism/darcula.min.css">
+
+
+  <link rel="stylesheet" href="/css/prism/line-number.min.css">
+
+
+<div class="theme-post">
+  <div class="theme-post__background mdui-color-theme"></div>
+  <div class="theme-post__header mdui-color-theme">
+    <div class="theme-post__header__title mdui-text-truncate">
+      如何建站（一） - 建站必备知识及域名与服务器的购买
+    </div>
+    <div class="theme-spacer"></div>
+    <div class="theme-post__header__actions mdui-valign">
+      <div>
+        <span>Posted: </span>
+        <span style="float: right">6月 25, 2018</span>
+        
+      </div>
+      
+  <div class="theme-post__qrcode">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon mdui-hidden-xs-down" mdui-menu="{target: '#qrcode-menu'}">
+      <i class="mdui-icon material-icons">&#xe337;</i>
+    </button>
+    <ul class="mdui-menu" id="qrcode-menu">
+      <li class="mdui-list-item" style="cursor: auto">
+        Article QR Code
+      </li>
+        <img class="mdui-img-fluid" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEKElEQVR42u3aS24bMRAFQN//0sk2QCDpve6xraGKKyOWR8NigP6wv/5YwfpCgAkTJkyYMFmYMGHC9PZMX/H69/PPf3705OQbHz0tefL/n5ntERMmTJgwncf0IjTGL/3835PnJCiPCJ4fWLtHTJgwYcJ0HlOeBMxShySQ55tJUoHZHjFhwoQJ0ycz5dveFMPt8eSJCCZMmDBhwtQWk23JOksp2gPDhAkTJkyYZg3Q2TVk+8kZ9KxJjQkTJkyYPoHp2sGd9/z57eabMGHChAnTjzB9x0ravpuEoG03D3eBCRMmTJiOYLq2cG0RN8lH0rptB3owYcKECdN5TG1LNA/kOVlyJC1ui4UJEyZMmE5lahumeYqwCfz5JmdveMF8EyZMmDBhuiFTnhC0Q595kpGH+VkruUhWMGHChAnToUxtOM/Ti3ywNS+AZ8E+EsCECRMmTEcw1a3PMkhfe23Zfu8q9cGECRMmTEcw5YXurDnbFtL5IE7ezJ29ISZMmDBhOolp1jx9vpn8t/ug3hbSw4QAEyZMmDDdkGnWnC3Catkmbq8kZ6VyfZ2JCRMmTJhuznRZYzS47Gw31pLlx/zi4DFhwoQJ0xFMSRs3b6HmKcKsfM3TgvwN6yYvJkyYMGG6LdOLUnA0gpOPil6LsinjMWHChAnTqUyzQnGTFtTlaDmgs2lSY8KECROmM5g2hWsb7JPPt0lGPipUN5oxYcKECdMRTLPG7qYM3hTMs4vP4SgSJkyYMGE6iKkNqPtW7CbhyAd0Lk4IMGHChAnTDZn2jdfZ316bUrRvEl2pYsKECROmI5jysrNt1+bPbC9EW7JZUxsTJkyYMH0CU3uFmT+t/ZbZ0zYDRpgwYcKE6QymZMhmM+LTFsDf1zJuFyZMmDBhOo9pP0yTNFI3l45JMdz+J3j4DpgwYcKE6SCmNsTuLzXzgrYYtVlcwWLChAkTplOZNtvIw3zbwJ2F9nZfRUKACRMmTJhuzrRp784K0fa3+bhqe6j1rS8mTJgwYboVU9uKbQvRvMDON5xfiOaNXUyYMGHCdCpTnhBsAnnbeM1bz7OiGhMmTJgwfQ5TGz7zDeft2qtGUWeN6YdvhQkTJkyYDmJqh2naS83iEjEeTp19V35pigkTJkyYzmDaNFLb5KAtidsieb8wYcKECdN5TO3KS9C83M0PqW0l52+ICRMmTJhOZWqDZZsWtCV0e2E5+6th3oQJEyZMmG7L1Abv/WVnfjE5a+lekLJgwoQJE6bjmPKgvhnByROR9jjbJvKLA8OECRMmTJguas62375v5q5KX0yYMGHCdDRTHVZnwTj+9llbOSrvMWHChAnTcUybJm9LvC99kwPOE4gf6oVjwoQJE6ZfYvqOwZ38SnIDug/8RUKACRMmTJhuyGRFCYGFCRMmTJgwYbIwYcL0LusvyQ5s9Hh7OMUAAAAASUVORK5CYII=" style="cursor: auto">
+    </ul>
+  </div>
+
+
+      
+  <div class="theme-post__share">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon" mdui-menu="{target: '#post-share-menu'}">
+      <i class="mdui-icon material-icons">&#xe80d;</i>
+    </button>
+
+    <ul class="mdui-menu" id="post-share-menu">
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhuxiaoyi.com//2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/index.html" target="_blank" class="mdui-ripple">
+                Share to Facebook
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://plus.google.com/share?url=http://blog.zhuxiaoyi.com//2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/index.html" target="_blank" class="mdui-ripple">
+                Share to Google+
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://blog.zhuxiaoyi.com//2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/index.html&title=如何建站（一） - 建站必备知识及域名与服务器的购买" target="_blank" class="mdui-ripple">
+                Share to Linkedin
+            </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://twitter.com/intent/tweet?text=如何建站（一） - 建站必备知识及域名与服务器的购买&url=http://blog.zhuxiaoyi.com//2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/index.html&via=HadesZ" target="_blank" class="mdui-ripple">
+                Share to Twitter
+            </a>
+        </li>
+      
+
+      
+
+    </ul>
+  </div>
+
+
+    </div>
+  </div>
+  <div class="theme-post__warpper
+    
+  ">
+    <div class="theme-post__warpper__container">
+      <article class="mdui-card theme-post__card mdui-hoverable">
+        <section class="theme-post__card__warning">
+          This article was last modified
+          <span id="content-warning"></span>
+          days ago.
+          The content of this post may be outdated!
+        </section>
+        
+        
+          <section class="mdui-card-media">
+            <img src="/images/random/12.png"/>
+          </section>
+        
+        <section class="mdui-typo theme-post__card__content">
+          <h1 id="一、序言"><a href="#一、序言" class="headerlink" title="一、序言"></a>一、序言</h1><h2 id="1-1-明确你的建站目的"><a href="#1-1-明确你的建站目的" class="headerlink" title="1. 1 明确你的建站目的"></a>1. 1 明确你的建站目的</h2><p><strong>— 写在最前：这是写给小白的建站指南，大神可以来尽情践踏</strong></p>
+<p>&#160; &#160; &#160; &#160;本篇主要介绍的是如何搭建个人网站，如果只是单纯想搭建个人博客的话，可以通过<strong>Github + Hexo</strong>（不需要购买服务器） 、 <strong>Xampp + WordPress</strong>（可购买服务器也可以不购买） 等方式搭建。</p>
+<p>&#160; &#160; &#160; &#160;你可以在网上搜索相关教程，我在这里推荐以下几个教程地址：</p>
+<ul>
+<li><a href="https://www.zhihu.com/question/23934523" target="_blank" rel="noopener">如何用Github搭建个人博客</a></li>
+<li><a href="http://blog.csdn.net/jzooo/article/details/46781805" target="_blank" rel="noopener">零基础免费搭建个人博客-hexo+github</a></li>
+<li><a href="http://jingyan.baidu.com/article/f71d60376ba9571ab641d117.html" target="_blank" rel="noopener">用XAMPP来搭建Wordpress建站环境</a></li>
+</ul>
+<p>&#160; &#160; &#160; &#160;如果你不知道个人博客和我说的狭义的网站这两者的区别，这里给出Examples：</p>
+<ul>
+<li><a href="http://baixin.io/" target="_blank" rel="noopener">潘柏信 - 个人站</a> （Hexo搭建的个人博客）</li>
+<li>所有你能看到的官网首页（公司官网，门户网站，论坛等）</li>
+</ul>
+<p>&#160; &#160; &#160; &#160;其实这两者的主要区别在于我所说的个人博客主要是功能单一的独立博客而已，因为<strong>如果你只是想搭建这样一个博客的话，没有必要购买服务器去搭建。Github + Hexo已经可以很好的帮你完成你的想法了</strong>。</p>
+<p>&#160; &#160; &#160; &#160;如果你不想记住一长串类似于“<a href="http://XXX（你的Github账户名）.github.io/”的地址的话，你可以单独买一个域名然后解析到这个地址对应的IP地址即可。具体操作这里不多说，可根据以上教程走。" target="_blank" rel="noopener">http://XXX（你的Github账户名）.github.io/”的地址的话，你可以单独买一个域名然后解析到这个地址对应的IP地址即可。具体操作这里不多说，可根据以上教程走。</a></p>
+<p>&#160; &#160; &#160; &#160;当然，我说的这种区别可能不太恰当。但是我这么举例主要是想让大家明白自己大概是想成做什么样的东西。</p>
+<h2 id="1-2-选择搭建个人网站的方式"><a href="#1-2-选择搭建个人网站的方式" class="headerlink" title="1. 2 选择搭建个人网站的方式"></a>1. 2 选择搭建个人网站的方式</h2><p>&#160; &#160; &#160; &#160;在公网建设个人网站的方式有两种：</p>
+<p>&#160; &#160; &#160; &#160;<strong>a. 通过个人电脑搭配公网IP建站</strong></p>
+<p>&#160; &#160; &#160; &#160;<strong>b. 通过购买虚拟主机、VPS、云服务器等建站</strong></p>
+<p>&#160; &#160; &#160; &#160;这两种方式的主要区别在于：</p>
+<ul>
+<li>第一种方式不需要购买服务器（关于服务器的介绍与区别会在之后小节进行）；</li>
+<li>第二种方式需要购买服务器，然后通过shell或者远程登录控制服务器搭建网站。</li>
+</ul>
+<p>&#160; &#160; &#160; &#160;第一种搭建网站的方式我个人觉得比较麻烦，需要用到花生壳内网穿透这种软件，不过更主要的原因是……反正我没成功过……嗯，对，所以我选了第二种。</p>
+<p>&#160; &#160; &#160; &#160;同样的，这里给大家推荐：</p>
+<ul>
+<li><a href="http://jingyan.baidu.com/article/d45ad148fb96f269552b809f.html" target="_blank" rel="noopener">如何让外网访问本地服务器？</a></li>
+</ul>
+<p>&#160; &#160; &#160; &#160;当然，这个前提是你要会搭建本地服务器（Xampp/Appserv/WampServer等）。如果不能解决的话，同样可以去问问神奇的度娘。。。</p>
+<p>&#160; &#160; &#160; &#160;第二种搭建网站的方式我非常喜欢，为什么呢？有以下几个原因：</p>
+<ul>
+<li>相当于又有了一台电脑，只不过不在身边</li>
+<li>可以想怎么改建网站就怎么改，只要愿意写代码</li>
+<li><strong>如果你购买的是国外的服务器，还可以用pptpd来搭建属于自己的VPN</strong></li>
+</ul>
+<p>&#160; &#160; &#160; &#160;很明显，第三条是很吸引人的。因为我建站的费用每年是 25（域名） + 460（虚拟专用服务器），而我相当于有了 <strong>一个网站</strong> + <strong>一个VPN</strong>。但是这个VPN我目前不能做代理，因为ping的延迟太高（将近200），所以也就是用来刷刷脸书，逛逛Youtube（偶尔膜一膜，坏笑.jpg）。</p>
+<p>&#160; &#160; &#160; &#160;好了，废话了这么多，那么，我们终于可以进入主题了！！！</p>
+<h1 id="二、建站准备工作"><a href="#二、建站准备工作" class="headerlink" title="二、建站准备工作"></a>二、建站准备工作</h1><h2 id="2-1-域名选购"><a href="#2-1-域名选购" class="headerlink" title="2. 1 域名选购"></a>2. 1 域名选购</h2><p>&#160; &#160; &#160; &#160;相信大家建站之前都有了解过域名服务商和分销商有哪些，国内比较有名的比如：<a href="https://wanwang.aliyun.com/?spm=5176.8142029.388261.25.VhY7E7" target="_blank" rel="noopener">阿里云（万网）</a>、<a href="https://cloud.baidu.com/product/bcd.html" target="_blank" rel="noopener">百度云</a>、<a href="https://dnspod.qcloud.com/?from=qcloud" target="_blank" rel="noopener">腾讯云</a>、<a href="http://www.ename.com/" target="_blank" rel="noopener">易名中国</a>、<a href="http://www.xinnet.com/" target="_blank" rel="noopener">新网</a>等，这里我不做好坏评价，毕竟我也没用过。</p>
+<p>&#160; &#160; &#160; &#160;我用的是<a href="https://cloud.baidu.com/product/bcd.html" target="_blank" rel="noopener">百度云</a>的域名服务购买的 .top 域名，另外知乎上也有推荐国外的域名服务商，例如：<a href="https://www.hostinger.com.hk/" target="_blank" rel="noopener">Hostinger中国</a>（Hostinger提供免费的微容量共享服务器，当然效果不是很好）、<a href="https://sg.godaddy.com/zh/" target="_blank" rel="noopener">GoDaddy</a>、<a href="http://www.usdomaincenter.com/" target="_blank" rel="noopener">USDomainCenter</a>等。</p>
+<p>&#160; &#160; &#160; &#160;有些人购买域名的时候会比较犹豫，不知道买怎样的域名比较好。其实没什么犹豫纠结的，稍微有点钱就上 .com 域名，没钱就买那些好记一点的，比如我选的 .top 域名。我们之所以不通过服务器的IP访问服务器，不就是因为IP太难记了吗？如果你买个域名是 像dsjaoifj.xyz 这种的，那跟通过IP访问的难度有什么不同呢？所以，只要域名好记，就可以了。</p>
+<h2 id="2-2-服务器选购"><a href="#2-2-服务器选购" class="headerlink" title="2. 2 服务器选购"></a>2. 2 服务器选购</h2><p>&#160; &#160; &#160; &#160;少部分的域名服务商会同时提供服务器的购买服务，例如国内<a href="https://wanwang.aliyun.com/" target="_blank" rel="noopener">阿里云</a>、<a href="https://cloud.baidu.com/product/bcd.html" target="_blank" rel="noopener">百度云</a>之类的。那么这里就要提到服务器的种类和区别了。</p>
+<p>&#160; &#160; &#160; &#160;服务器可以分为以下几类：</p>
+<blockquote>
+<p>&#160; &#160; &#160; &#160;<strong>a.独立服务器</strong></p>
+<p>&#160; &#160; &#160; &#160;顾名思义，就是一个躺在机房的实实在在的物理服务器，也可理解为你的游戏主机一样。</p>
+<p>&#160; &#160; &#160; &#160;<em>优点：性能高</em></p>
+<p>&#160; &#160; &#160; &#160;<em>缺点：价格高，高可用性低（比如断电，硬盘坏了……）</em></p>
+<p>&#160; &#160; &#160; &#160;<strong>b.VPS（Virtual Private Server）</strong></p>
+<p>&#160; &#160; &#160; &#160;虚拟专用服务器，一般是将一个独立服务器通过虚拟化技术虚拟成多个虚拟专用服务器。</p>
+<p>&#160; &#160; &#160; &#160;<em>优点：价格便宜</em></p>
+<p>&#160; &#160; &#160; &#160;<em>缺点：性能低，高可用性低（除了其所在的物理机出问题了会收到影响，虚拟化技术出问题也会收到影响）</em></p>
+<p>&#160; &#160; &#160; &#160;<strong>c.云服务器</strong></p>
+<p>&#160; &#160; &#160; &#160;Elastic Compute Service, 简称ECS 好多人理解云服务器和VPS一样，更有甚者说以前的VPS现在的说法就是云服务器，其实不然，云服务器是一个计算，网络，存储的组合。简单点说就是通过多个CPU，内存，硬盘组成的计算池和存储池和网络的组合。</p>
+<p>&#160; &#160; &#160; &#160;<em>优点：价格适中，使用灵活，高可用性（单个或多个物理离线不会对整个服务造成太大的影响）</em></p>
+<p>&#160; &#160; &#160; &#160;<em>缺点：性能相对较低</em></p>
+<p>&#160; &#160; &#160; &#160;<strong>d.虚拟主机</strong></p>
+<p>&#160; &#160; &#160; &#160;Virtual hosts （Vhost）虚拟主机是通过，物理服务器，VPS或者云服务器安装例如CPanel，Plesk等面板搭建的。虚拟主机市场比较混乱，不同的厂商价格一般会有很大的差异，一般来说看一个虚拟主机的好坏可以从以下几点来看，主机系统：CloudLinux 更适合多租户虚拟主机，CPanel，Plesk 面板在市场上最受市场欢迎，一般来说价格相对较贵，使用云服务器最好（比如阿里云），物理服务器也可，一般不选择VPS作为虚拟主机的服务器。</p>
+<p>&#160; &#160; &#160; &#160;<em>优点：价格低，使用方便</em></p>
+<p>&#160; &#160; &#160; &#160;<em>缺点：一般来说只能做网站，或应用后端服务器，市场杂乱比较难选购</em></p>
+<p>&#160; &#160; &#160; &#160;<strong>总结：如过只是做一个小网站，个人博客等用虚拟主机就可，大点的应用建议用云服务器。</strong></p>
+</blockquote>
+<p><em>转自：<a href="https://www.zhihu.com/question/25507629/answer/105594087" target="_blank" rel="noopener">万网提供的云服务器和虚拟主机的区别是什么？</a> 来源：知乎@张朝权</em></p>
+<p>&#160; &#160; &#160; &#160;一波介绍后，大家可以根据自身的需求购买服务器。</p>
+<p>&#160; &#160; &#160; &#160;因为我只是想建个个人网站玩一玩，需求不高，所以我在<a href="https://www.hostpark.cn/" target="_blank" rel="noopener">主机公园</a>买了一个位于美国洛杉矶的VPS，一年价格450左右。</p>
+<p>&#160; &#160; &#160; &#160;<em>令人因却思婷的是，我购买服务器的那个网站——<a href="https://www.hostpark.cn/" target="_blank" rel="noopener">主机公园</a>，正是我上面引用的那段话的作者——张朝权所在的服务商。（= = 这真的是个意外。。。）</em></p>
+<p>&#160; &#160; &#160; &#160;当然，选购服务器肯定要比选购域名纠结得多，在这里给大家介绍几种方法：</p>
+<ul>
+<li>在知乎上或者教程上看别人的推荐</li>
+<li>找你看过的比较好的网站对应的服务器供应商</li>
+<li>多问服务器供应商的客服</li>
+</ul>
+<p>&#160; &#160; &#160; &#160;这几种方法都会比较有效果，第一种不多说，毕竟是用过的人推荐的；第二种我等会儿就会介绍两个工具给大家详细介绍；第三种则是遵循了“<strong>鼻子底下就是路</strong>”的原则。。。</p>
+<p>&#160; &#160; &#160; &#160;那么在介绍第二种方法的同时，给大家介绍两个工具：<strong><a href="http://tool.chinaz.com/dns" target="_blank" rel="noopener">DNS检测</a></strong>和<strong>命令提示符</strong>。</p>
+<p>&#160; &#160; &#160; &#160;<strong>如果我看到过一个大神的网站很好，很想做一个跟他差不多的网站，但是我不知道他买的是哪家的服务器怎么办？</strong></p>
+<p>&#160; &#160; &#160; &#160;那就用<a href="http://tool.chinaz.com/dns" target="_blank" rel="noopener">DNS检测</a>查一下。比如说我曾经看到过<a href="http://www.miaoqiyuan.cn/" target="_blank" rel="noopener">苗启源的部落格</a>（网址：<a href="http://www.miaoqiyuan.cn），我想用跟他一样的服务器，那么我就可以把他的域名" target="_blank" rel="noopener">www.miaoqiyuan.cn），我想用跟他一样的服务器，那么我就可以把他的域名</a> <em>miaoqiyuan.cn</em> 放进<a href="http://tool.chinaz.com/dns" target="_blank" rel="noopener">DNS检测</a>查询一下：</p>
+<p><img src="http://i.imgur.com/ahVErB6.png" alt="查询 *miaoqiyuan.cn* 的服务器供应商"></p>
+<p>&#160; &#160; &#160; &#160;在图中可以看到响应IP对应的是 <em>河南省郑州市 景安BGP数据中心</em>，那么我们就可以去百度这个供应商了：</p>
+<p><img src="http://i.imgur.com/ahVErB6.png" alt="查询 *miaoqiyuan.cn* 的服务器供应商"></p>
+<p>&#160; &#160; &#160; &#160;<strong>如果我想知道我看中的这个服务器好不好，速度快不快，适不适合做代理呢？</strong></p>
+<p>&#160; &#160; &#160; &#160;那么我们就可以用 <em>命令提示符</em> 长Ping来观察：</p>
+<pre><code>    ping -t miaoqiyuan.cn
+</code></pre><p><img src="http://i.imgur.com/ahVErB6.png" alt="查询 *miaoqiyuan.cn* 的服务器供应商"></p>
+<p>&#160; &#160; &#160; &#160;这里刚好ping到了特殊情况，说明 <em>miaoqiyuan.cn</em> 服务器是用SVN搭建的，从外网访问服务器需要用到类似<a href="http://hsk.oray.com/" target="_blank" rel="noopener">花生壳</a>的软件。那刚好来给大家看下我自己的服务器：</p>
+<p><img src="http://i.imgur.com/ahVErB6.png" alt="查询 *miaoqiyuan.cn* 的服务器供应商"></p>
+<p>&#160; &#160; &#160; &#160;可以看到我的服务器时延较长，但是长时间Ping并未出现丢包（<em>Request timed out</em>）的情况。说明服务器稳定性是可以的，但是不适合做代理，因为时延较高。特别像游戏代理的话，300ms的Ping值是会让人抓狂的。</p>
+<p>&#160; &#160; &#160; &#160;好了，写到了这里，相信大家也都准备去买域名和服务器了。下一篇我将说说买好了域名和服务器以后具体该怎么搭建网站了。</p>
+<p>See U Next Chapter!</p>
+
+        </section>
+
+        
+          <section class="theme-post__card__license mdui-typo">
+            <span>
+              Article License: 
+              
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a>
+              
+            </span>
+            <br />
+            <span>Article Permalink: <a href="http://blog.zhuxiaoyi.com/2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/">http://blog.zhuxiaoyi.com/2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/</a></span>
+            
+              <br />
+              <span>Article Markdown: <a href="http://blog.zhuxiaoyi.com/2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/如何建站（一） - 建站必备知识及域名与服务器的购买.md">http://blog.zhuxiaoyi.com/2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/如何建站（一） - 建站必备知识及域名与服务器的购买.md</a></span>
+            
+          </section>
+        
+
+        
+          <section class="mdui-card-actions theme-post__card__actions">
+            
+              <button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-ripple  mdui-color-red" mdui-tooltip="{content: 'Buy me a beer?', position: 'right'}" mdui-dialog="{target: '#donateDialog'}">
+                <i class="mdui-icon fa fa-beer"></i>
+              </button>
+            
+            <div class="theme-spacer"></div>
+            
+            
+          </section>
+        
+
+        
+          
+            <script type="text/javascript">
+              themeRuntime.commentRest.function = function (newIdentifier, newUrl, newTitle) {
+                return
+              }
+            </script>
+          
+        
+      </article>
+      
+        <div class="mdui-color-theme theme-post__toc">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E00;&#x3001;&#x5E8F;&#x8A00;" data-href="#&#x4E00;&#x3001;&#x5E8F;&#x8A00;"><span class="toc-number"></span> <span class="toc-text">1. &#x4E00;&#x3001;&#x5E8F;&#x8A00;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#1-1-&#x660E;&#x786E;&#x4F60;&#x7684;&#x5EFA;&#x7AD9;&#x76EE;&#x7684;" data-href="#1-1-&#x660E;&#x786E;&#x4F60;&#x7684;&#x5EFA;&#x7AD9;&#x76EE;&#x7684;"><span class="toc-number"></span> <span class="toc-text">1.1. 1. 1 &#x660E;&#x786E;&#x4F60;&#x7684;&#x5EFA;&#x7AD9;&#x76EE;&#x7684;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#1-2-&#x9009;&#x62E9;&#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x7F51;&#x7AD9;&#x7684;&#x65B9;&#x5F0F;" data-href="#1-2-&#x9009;&#x62E9;&#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x7F51;&#x7AD9;&#x7684;&#x65B9;&#x5F0F;"><span class="toc-number"></span> <span class="toc-text">1.2. 1. 2 &#x9009;&#x62E9;&#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x7F51;&#x7AD9;&#x7684;&#x65B9;&#x5F0F;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E8C;&#x3001;&#x5EFA;&#x7AD9;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" data-href="#&#x4E8C;&#x3001;&#x5EFA;&#x7AD9;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><span class="toc-number"></span> <span class="toc-text">2. &#x4E8C;&#x3001;&#x5EFA;&#x7AD9;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#2-1-&#x57DF;&#x540D;&#x9009;&#x8D2D;" data-href="#2-1-&#x57DF;&#x540D;&#x9009;&#x8D2D;"><span class="toc-number"></span> <span class="toc-text">2.1. 2. 1 &#x57DF;&#x540D;&#x9009;&#x8D2D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#2-2-&#x670D;&#x52A1;&#x5668;&#x9009;&#x8D2D;" data-href="#2-2-&#x670D;&#x52A1;&#x5668;&#x9009;&#x8D2D;"><span class="toc-number"></span> <span class="toc-text">2.2. 2. 2 &#x670D;&#x52A1;&#x5668;&#x9009;&#x8D2D;</span></a></li></ol></li></ol>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="theme-spacer"></div>
+
+  
+    <div class="mdui-color-theme theme-post__toc-fab">
+  <button class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-fab-fixed mdui-hidden-md-up" mdui-menu="{target: '#toc-fab-menu', fixed: true}" id="toc-fab">
+    <i class="mdui-icon material-icons">&#xe242;</i>
+  </button>
+  <ul class="mdui-menu mdui-typo theme-post__toc-fab__menu" id="toc-fab-menu" style="padding: 8px;max-height: 80%">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E00;&#x3001;&#x5E8F;&#x8A00;" data-href="#&#x4E00;&#x3001;&#x5E8F;&#x8A00;"><span class="toc-number"></span> <span class="toc-text">1. &#x4E00;&#x3001;&#x5E8F;&#x8A00;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#1-1-&#x660E;&#x786E;&#x4F60;&#x7684;&#x5EFA;&#x7AD9;&#x76EE;&#x7684;" data-href="#1-1-&#x660E;&#x786E;&#x4F60;&#x7684;&#x5EFA;&#x7AD9;&#x76EE;&#x7684;"><span class="toc-number"></span> <span class="toc-text">1.1. 1. 1 &#x660E;&#x786E;&#x4F60;&#x7684;&#x5EFA;&#x7AD9;&#x76EE;&#x7684;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#1-2-&#x9009;&#x62E9;&#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x7F51;&#x7AD9;&#x7684;&#x65B9;&#x5F0F;" data-href="#1-2-&#x9009;&#x62E9;&#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x7F51;&#x7AD9;&#x7684;&#x65B9;&#x5F0F;"><span class="toc-number"></span> <span class="toc-text">1.2. 1. 2 &#x9009;&#x62E9;&#x642D;&#x5EFA;&#x4E2A;&#x4EBA;&#x7F51;&#x7AD9;&#x7684;&#x65B9;&#x5F0F;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E8C;&#x3001;&#x5EFA;&#x7AD9;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;" data-href="#&#x4E8C;&#x3001;&#x5EFA;&#x7AD9;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;"><span class="toc-number"></span> <span class="toc-text">2. &#x4E8C;&#x3001;&#x5EFA;&#x7AD9;&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#2-1-&#x57DF;&#x540D;&#x9009;&#x8D2D;" data-href="#2-1-&#x57DF;&#x540D;&#x9009;&#x8D2D;"><span class="toc-number"></span> <span class="toc-text">2.1. 2. 1 &#x57DF;&#x540D;&#x9009;&#x8D2D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#2-2-&#x670D;&#x52A1;&#x5668;&#x9009;&#x8D2D;" data-href="#2-2-&#x670D;&#x52A1;&#x5668;&#x9009;&#x8D2D;"><span class="toc-number"></span> <span class="toc-text">2.2. 2. 2 &#x670D;&#x52A1;&#x5668;&#x9009;&#x8D2D;</span></a></li></ol></li></ol>
+  </ul>
+</div>
+
+  
+
+  
+    <div class="theme-post__pagination mdui-color-theme">
+  
+    <div class="theme-post__pagination__prev mdui-ripple mdui-valign">
+      <a href="/2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/" class="theme-post__pagination__prev__content mdui-text-left">
+        <div>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cb;</i>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">Newer Post</span>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）
+        </div>
+      </a>
+    </div>
+  
+
+  
+    <div class="theme-post__pagination__next mdui-ripple mdui-valign">
+      <a href="/2018/06/25/hello-world/" class="theme-post__pagination__next__content mdui-text-right">
+        <div>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">Older Post</span>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cc;</i>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          Hello World
+        </div>
+      </a>
+    </div>
+    
+</div>
+
+  
+
+  
+    <div class="mdui-dialog" id="donateDialog">
+      <div class="mdui-dialog-title">Buy me a beer?</div>
+      <div class="mdui-dialog-content">
+        <div class="mdui-list">
+          
+            <a href="/img/avatar.png" title="wechat" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-wechat mdui-text-center"></i>&emsp;
+              
+              
+              
+              wechat
+            </a>
+          
+            <a href="https://paypal.com" title="paypay" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-paypal mdui-text-center"></i>&emsp;
+              
+              
+              
+              paypay
+            </a>
+          
+        </div>
+      </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple mdui-ripple" mdui-dialog-close>Cancel</button>
+      </div>
+    </div>
+  
+</div>
+<script type="text/javascript">
+  themeRuntime.scriptsMap.post = [];
+  if (document.querySelector('.theme-post__toc-fab__menu > ol') !== null && document.querySelector('.theme-post__toc > ol') !== null) {
+    tocHighlight()
+    function tocHighlight() {
+      var timer;
+      function doWork() {
+        listens.forEach(function(value, index) {
+          value[1]();
+          value[0].classList.remove("mdui-list-item-active");
+        })
+        let actionToc = (listens[listens.reduce(function(r, v, index) {
+          if (v[2] == true) {
+            return index;
+          } else return r;
+        }, undefined)] || [])[0] || listens[0][0];
+        actionToc.classList.add("mdui-list-item-active");
+        if(actionToc.getClientRects().length == 0)return;
+        showToc(actionToc);
+      }
+      function showToc(toc) {
+        let offsetTop = toc.getClientRects()[0].top - cardToc.getClientRects()[0].top - 40;
+        let offsetBottom = toc.getClientRects()[0].bottom - cardToc.getClientRects()[0].bottom + 40;
+        let offset = 0;
+        if (offsetTop < 0) offset = offsetTop;
+        if (offsetBottom > 0) offset = offsetBottom;
+        var targetTop = Math.max(0, Math.min(cardToc.scrollTop + offset, toclist.offsetHeight - cardToc.offsetHeight));
+        clearInterval(timer);
+        timer = setInterval(function() {
+          var now = cardToc.scrollTop;
+          var speed = (targetTop - now) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (Math.abs(now - targetTop) < 1) {
+            clearInterval(timer);
+          }
+          cardToc.scrollTop = now + speed;
+        }, 30);
+      }
+      var listens = [];
+      var cardToc = document.querySelector('.theme-post__toc');
+      var links = cardToc.querySelectorAll(".theme-post__toc__content__link");
+      var toclist = document.querySelector(".theme-post__toc > ol");
+      Array.prototype.forEach.call(links, function(value, index) {
+        var id = (value.getAttribute("href") || "#").slice(1);
+        var element = document.getElementById(id);
+        listens.push([value, function() {
+          var readed = false;
+          var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+          if (element.offsetTop <= scrollTop + element.clientHeight + 64) {
+            readed = true;
+          } else {
+            readed = false;
+          }
+          listens[index][2] = readed;
+        }, false])
+      })
+      doWork();
+      window.addEventListener("scroll", doWork)
+      var listener = {
+        function:  doWork,
+        event: 'scroll',
+        el: window,
+        removed: false
+      }
+      themeRuntime.scriptsMap.post.push(listener)
+    }
+  }
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var postLastModifiedDate = 1529920841899
+    var today = (new Date()).getTime()
+    var difference = Math.floor((today - postLastModifiedDate)/(24*60*60*1000))
+    if (difference >= 100) {
+      document.querySelector('.theme-post__card__warning').style.display = 'block'
+      document.querySelector('#content-warning').textContent = difference
+    }
+  })();
+</script>
+
+<script type="text/javascript">
+  var images = document.querySelectorAll('.theme-post__card__content img')
+  for (i = 0; i < images.length; i++) {
+    //console.log('image added', i)
+    images[i].addEventListener("click", openLG);
+    var listener = {
+      function:  openLG,
+      event: 'click',
+      el: images[i],
+      removed: false
+    }
+    themeRuntime.scriptsMap.post.push(listener)
+  }
+  function openLG() {
+    var img_src = this.getAttribute('src');
+    var img_alt = this.getAttribute('alt');
+    lightGallery(this, {
+      dynamic: true,
+      counter: false,
+      dynamicEl: [{
+        "src": img_src,
+        'subHtml': "<span author>HadesZ</span><div descr>" + img_alt + "</div>"
+      }],
+    });
+  }
+</script>
+
+
+
+
+      </div>
+    </div>
+  </main>
+
+  <div id="outdated" style="z-index: 9999;">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+  </div>
+  <!-- import js -->
+
+
+  <script src="/js/outdatedbrowser.min.js"></script>
+
+
+
+  
+    <script src="/js/js.barba.min.js"></script>
+    <script type="text/javascript">
+      Barba.Utils.errorPageUrl = '/404.html';
+    </script>
+  
+
+
+<!-- theme js -->
+<script type="text/javascript">
+  (function() {
+    var appbarTopFlag = false;
+    var appbarEl = document.querySelector('.theme-appbar');
+    function appbarShadow() {
+      var bodyScrolled = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+      if (bodyScrolled > 0 && !appbarTopFlag) {
+        appbarEl.classList.add('theme-appbar--shadow');
+        appbarTopFlag = true;
+      } else if (bodyScrolled === 0 && appbarTopFlag) {
+        appbarEl.classList.remove('theme-appbar--shadow');
+        appbarTopFlag = false;
+      }
+    }
+    appbarShadow()
+    window.addEventListener('scroll', appbarShadow);
+  })();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+  document.querySelector('body').classList.add('theme-loaded')
+</script>
+
+
+</body>
+</html>

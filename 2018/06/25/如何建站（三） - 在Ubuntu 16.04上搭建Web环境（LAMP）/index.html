@@ -1,0 +1,875 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+
+
+
+<head>
+  <script>
+    window.mduiVersion = "2.0.0"
+    window.oldVersion = [
+     '1.4.1',
+     '1.4.5',
+     'unknownVersion'
+    ]
+    window.themeRuntime = {
+      root: "/",
+      scriptsMap: {},
+      init: {
+        status: false
+      },
+      commentRest: {
+        status: false
+      }
+    };
+    console.info("%cCopyright © 2017 Halyul\n"+'Theme Version: 2.0.0'+'%c\nhttps://github.com/Halyul/hexo-theme-mdui',"font-size: 14px;color: #3F51B5;","color: #448AFF;text-decoration: none");
+  </script>
+  <!--
+        © HEXO MDUI Theme
+        https://github.com/Halyul/hexo-theme-mdui
+        Version: 2.0.0 -->
+
+  <meta charset="UTF-8">
+  <title>如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP） - Hexo</title>
+
+  <!-- Favicons -->
+  <link rel="icon shortcut" type="image/ico" href="/images/favicon.png">
+  <link rel="icon" sizes="192x192" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <!-- Meta & Info -->
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta name="theme-color" content="#fff">
+
+  <meta name="author" content="HadesZ">
+  
+  <meta name="keywords" content="blog, hexo, mdui">
+
+  <!--iOS -->
+  <meta name="apple-mobile-web-app-title" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="480">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- The Open Graph protocol -->
+  <meta property="og:url" content="http://blog.zhuxiaoyi.com">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" content="如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP） - Hexo | Hexo">
+  <meta property="og:image" content="/images/favicon.png" />
+  
+
+  
+
+  
+
+  <!-- Import CSS -->
+  
+    <link rel="stylesheet" href="/css/mdui.css">
+  
+
+  
+
+</head>
+
+
+<body class="mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+
+  <style>
+    #spinner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+          opacity: 1;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+          transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+    main {
+      opacity: 0;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      display: none;
+    }
+  </style>
+  <div id="spinner">
+    <style>
+      .spinner {
+
+      -webkit-animation: rotator 1.4s linear infinite;
+              animation: rotator 1.4s linear infinite;
+      }
+
+      @-webkit-keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      @keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      .path {
+      stroke-dasharray: 187;
+      stroke-dashoffset: 0;
+      -webkit-transform-origin: center;
+              transform-origin: center;
+      -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+              animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+      }
+
+      @-webkit-keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+
+      @keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+    </style>
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
+
+  <main>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-color-white mdui-shadow-0 theme-appbar">
+  <div class="mdui-toolbar theme-toolbar-top">
+    
+      <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--arrow">
+        <i class="mdui-icon">
+          <span></span>
+        </i>
+      </a>
+    
+  </div>
+  <div class="mdui-toolbar theme-toolbar-bottom">
+    <span class="theme-toolbar-bottom__title">Hexo</span>
+    
+      <a href="/search.html" class="mdui-textfield-icon mdui-btn mdui-btn-icon theme-toolbar-bottom__search">
+        <i class="mdui-icon material-icons">&#xe8b6;</i>
+      </a>
+    
+  </div>
+  <div class="mdui-progress theme-appbar__progress" id="progressBar">
+    <div class="mdui-progress-indeterminate"></div>
+  </div>
+</div>
+
+    <div class="mdui-drawer mdui-drawer-full-height theme-drawer" id="drawer">
+  <!-- header -->
+  <div class="theme-drawer__header">
+  <div class="theme-drawer__header__layer-1">
+    <div class="mdui-toolbar theme-toolbar-top">
+      
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--drawer theme-appbar__burger--arrow" id="drawer-back">
+          <i class="mdui-icon">
+            <span></span>
+          </i>
+        </a>
+      
+    </div>
+    <div class="mdui-toolbar theme-toolbar-bottom">
+      <span class="theme-toolbar-bottom__title">Hexo</span>
+    </div>
+  </div>
+  <div class="theme-drawer__header__layer-2" style="background-image: url(/images/bg.png)">
+    <img class="mdui-img-circle theme-drawer__header__layer-2__user__avatar" src="/images/avatar.png"/>
+    <div class="theme-drawer__header__layer-2__user__info">
+      <div class="theme-drawer__header__layer-2__user__info__author mdui-text-color-white-text">
+        HadesZ
+      </div>
+      <div class="theme-drawer__header__layer-2__user__info__slogan mdui-text-color-white-secondary">
+        I&#39;m your slogan!
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="theme-drawer__warpper">
+    <!-- content -->
+    <div class="theme-drawer__warpper__content">
+  <ul class="mdui-list">
+    <a href="/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe88a;</i>
+      <div class="mdui-list-item-content">Index</div>
+    </a>
+    <a href="/archives/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe149;</i>
+      <div class="mdui-list-item-content">Archives</div>
+    </a>
+    <ul class="mdui-list mdui-collapse" mdui-collapse="{accordion: true}" mdui-collapse>
+      
+      
+      <div class="mdui-collapse-item ">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+          <i class="mdui-list-item-icon mdui-icon material-icons">&#xe916;</i>
+          <div class="mdui-list-item-content">Years</div>
+          <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-list">
+          
+          
+            <a href="/archives/2018/" class="mdui-list-item mdui-ripple">
+              2018
+            </a>
+          
+        </div>
+      </div>
+    </ul>
+  </ul>
+  
+    <div class="mdui-divider"></div>
+    <ul class="mdui-list" mdui-collapse="{accordion: true}" mdui-collapse>
+      
+        
+          
+            <a href="/friends" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">&#xe0ba;</i>
+              
+              
+              <div class="mdui-list-item-content">Test1</div>
+            </a>
+        
+      
+        
+          
+            <a href="/apply-for-link" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-child mdui-text-center"></i>
+              
+              
+              
+              <div class="mdui-list-item-content">Test2</div>
+            </a>
+        
+      
+        
+          
+            <a href="/galleries" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">Test3</div>
+            </a>
+        
+      
+        
+          <div class="mdui-collapse-item">
+            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">Test4</div>
+              <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+            </div>
+            <div class="mdui-collapse-item-body mdui-list">
+              
+                
+                  <a href="/myfriends" class="mdui-list-item mdui-ripple mdui-ripple-white" target="_self">
+                
+                    TEST1
+                  </a>
+              
+                
+                  <a href="/timeline" class="mdui-list-item mdui-ripple mdui-ripple-white" target="_self">
+                
+                    TEST2
+                  </a>
+              
+            </div>
+          </div>
+        
+      
+    </ul>
+  
+</div>
+
+    <div class="theme-spacer"></div>
+    <!-- footer -->
+    <div class="theme-drawer__warpper__footer">
+  <div class="mdui-typo mdui-typo-caption-opacity">
+    Powered by <a href="http://hexo.io" target="_blank">Hexo</a>
+    <br />
+    Theme - <a href="//github.com/Halyul/hexo-theme-mdui" target="_blank">Halyul/MDUI</a>
+    <br />
+    <span>
+      Copyright ©
+      <span year></span>
+      HadesZ
+    </span>
+    
+    
+      <br />
+      <span>
+        Last Updated: 6月 25, 2018
+      </span>
+    
+    
+  </div>
+</div>
+<script type="text/javascript">
+  var copyrightNow = new Date().getFullYear();
+  var textContent = document.querySelector('span[year]')
+  
+    textContent.textContent = copyrightNow
+  
+</script>
+
+  </div>
+</div>
+
+    <div id="top"></div>
+
+    <script src="/js/lightgallery.min.js"></script>
+
+    <div id="barba-wrapper">
+      <div class="barba-container"  data-namespace="post">
+        
+
+
+
+  <link rel="stylesheet" href="/css/prism/darcula.min.css">
+
+
+  <link rel="stylesheet" href="/css/prism/line-number.min.css">
+
+
+<div class="theme-post">
+  <div class="theme-post__background mdui-color-theme"></div>
+  <div class="theme-post__header mdui-color-theme">
+    <div class="theme-post__header__title mdui-text-truncate">
+      如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）
+    </div>
+    <div class="theme-spacer"></div>
+    <div class="theme-post__header__actions mdui-valign">
+      <div>
+        <span>Posted: </span>
+        <span style="float: right">6月 25, 2018</span>
+        
+      </div>
+      
+  <div class="theme-post__qrcode">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon mdui-hidden-xs-down" mdui-menu="{target: '#qrcode-menu'}">
+      <i class="mdui-icon material-icons">&#xe337;</i>
+    </button>
+    <ul class="mdui-menu" id="qrcode-menu">
+      <li class="mdui-list-item" style="cursor: auto">
+        Article QR Code
+      </li>
+        <img class="mdui-img-fluid" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEMUlEQVR42u3aS3LbQAwFQN3/0sk2VYmo9wDGlsbNlUumxJnmAoPP45cruB4IMGHChAkTJhcmTJgwvT3TI77+8UN/ff7nJ8++9ezpyX+f3Z+spN0jJkyYMGE6iSnZTLKI5L852fUvt/fUe8SECRMmTMcxPQuQ+UKTBeXHguR4sT8cYMKECRMmTPtgnyfbyf0JXLJmTJgwYcKEKWfKC7J54XUW+DFhwoQJE6ZNAfSaI4HLw3neyLzexTfUwjFhwoQJ05sx7bf6/n9/6XwTJkyYMGF6G6Z963GTGCeHj7w0nPx+sVNMmDBhwnQEU7uUWUtyFqSLNDW4v34KJkyYMGE6lCkJ/G3QzUd8NsXcvNl5XVDGhAkTJkznMeVAszGdvIWZvMI85G/WjAkTJkyYzmC6K8Dv24dtsjr7vEiYMWHChAnTD2C6K1S3zc5Ze7UI9gEZJkyYMGE6lWmWvrasecrdNlnbFzY8EGDChAkTpo9i2ozm7A8N+xCefLcdacWECRMmTGcw5ZufLSv/ZLOqYhwnfw2YMGHChOkgpiRRbLeUJ73tt5JWZdugfZH6YsKECROmj2XK09S86diG5M3Qz2YgtR5RxYQJEyZMH86UJ7p56zGhyVuns1LybD2YMGHChOkMprrJNyq/tk3K2bDp5lgQVQgwYcKECdMHMrUJZ/L4u+6cHQ7uGmzFhAkTJkxnMOVHgfz+TaNx0xxt0+AXfJgwYcKE6QimTcG3Dckz7n2y3b5CTJgwYcJ0EtM+kO/LuPcO8bzduQkTJkyYMH0r06xg2jY4N5ufpc2zojMmTJgwYTqP6foL18udpdDJEtuntHcmO8WECRMmTCcx5WG7TVCjcmrc2tw894bBHUyYMGHC9IFMScF3U7RNfnmWJF//2iy9x4QJEyZM5zGtQuZiUCYv7OYF6HZtL1JlTJgwYcJ0HNNmEKdNYtthnfzokIf8F/vChAkTJkxHMCVhflP83aTWSchvE+zifkyYMGHCdDRT/veshLoZ92kPB/nBAhMmTJgwnce0aTS2heAZU16Mzo8UmDBhwoTp5zC1Se+G4PopeduyJcufhQkTJkyYzmaahdU2qCeft4iztuiLVWHChAkTpoOYkmXNirPJ33vQNm2OdoQJEyZMmI5gujfQ5st6BFdRkC3T5gQLEyZMmDCdwdRe7RhNQt+2M2cvr27QYsKECROmI5ge8ZUXhXO4PDHOWWdJeHRuwoQJEyZMH8vUtjZnDdHkue2raseJ8tePCRMmTJjOY2rHXNrh0fbwkdO0vx+l1pgwYcKE6Qcz3dtEzIE2Ref8dWLChAkTJkx7jij5XB818lboN6S+mDBhwoTpy5nyVuU1XwuUbywfD8pfw3+phWPChAkTpjdjmiWKs+Jvu9xZkjwbG8KECRMmTOcxuaIDgQsTJkyYMGHC5MKECdO7XL8BrCn3d9kIolsAAAAASUVORK5CYII=" style="cursor: auto">
+    </ul>
+  </div>
+
+
+      
+  <div class="theme-post__share">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon" mdui-menu="{target: '#post-share-menu'}">
+      <i class="mdui-icon material-icons">&#xe80d;</i>
+    </button>
+
+    <ul class="mdui-menu" id="post-share-menu">
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhuxiaoyi.com//2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/index.html" target="_blank" class="mdui-ripple">
+                Share to Facebook
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://plus.google.com/share?url=http://blog.zhuxiaoyi.com//2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/index.html" target="_blank" class="mdui-ripple">
+                Share to Google+
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://blog.zhuxiaoyi.com//2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/index.html&title=如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）" target="_blank" class="mdui-ripple">
+                Share to Linkedin
+            </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://twitter.com/intent/tweet?text=如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）&url=http://blog.zhuxiaoyi.com//2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/index.html&via=HadesZ" target="_blank" class="mdui-ripple">
+                Share to Twitter
+            </a>
+        </li>
+      
+
+      
+
+    </ul>
+  </div>
+
+
+    </div>
+  </div>
+  <div class="theme-post__warpper
+    
+  ">
+    <div class="theme-post__warpper__container">
+      <article class="mdui-card theme-post__card mdui-hoverable">
+        <section class="theme-post__card__warning">
+          This article was last modified
+          <span id="content-warning"></span>
+          days ago.
+          The content of this post may be outdated!
+        </section>
+        
+        
+          <section class="mdui-card-media">
+            <img src="/images/random/26.png"/>
+          </section>
+        
+        <section class="mdui-typo theme-post__card__content">
+          <p><em>接下来我们开始在服务器上搭建Web环境</em></p>
+<p>在Linux上Web环境主要境分为LAMP和LNMP两种：</p>
+<ul>
+<li>LAMP 是指Linux + Apache + Mysql +PHP</li>
+<li>LNMP 是指Linux + Nginx + Mysql + PHP （如果要在StackOverflow等外文社区搜索相关资料请用LEMP）</li>
+</ul>
+<p>两者的区别在于Apache是重量级的，且对PHP友好的。如果你的后台处理语言更多的是使用PHP，那么就选择LAMP是最好的。而Nginx是轻量级的，对静态资源友好的。如果你的网站更多的只是静态资源，那么选择LNMP绝对没错。</p>
+<p>两者环境的搭建大同小异，接下来本文主要介绍LAMP的搭建。</p>
+<h5 id="更新Ubuntu软件库"><a href="#更新Ubuntu软件库" class="headerlink" title="更新Ubuntu软件库"></a>更新Ubuntu软件库</h5><p>在搭建LAMP环境前，我们为了保险起见，先更新一下软件库：</p>
+<pre>zxy@zxy-MIBook:~$ sudo apt update</pre>
+
+<h5 id="安装Apache2"><a href="#安装Apache2" class="headerlink" title="安装Apache2"></a>安装Apache2</h5><p>也可以安装Apache最原始的版本，但是本文建议安装Apache2，包括这步操作之后的Mysql以及PHP相关依赖都是基于Apache2的。所以<strong>如果你非要安装Apache原始版本的话，本文不能保证安装的顺利</strong>。</p>
+<pre>zxy@zxy-MIBook:~$ sudo apt install apache2</pre>
+
+<h5 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h5><p>在浏览器地址栏中输入localhost，如果打开显示了Apache2，那么这一步配置成功！</p>
+<h5 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h5><p>这里安装的PHP的版本是7.0，因为Ubuntu 16.04默认支持PHP7.0，如果安装PHP5就会报错。<br><em>不信。。。你可以试一试。。。</em></p>
+<pre>zxy@zxy-MIBook:~$ sudo apt install php 
+zxy@zxy-MIBook:~$ sudo apt install libapache2-mod-php </pre>
+
+<h5 id="验证-1"><a href="#验证-1" class="headerlink" title="验证"></a>验证</h5><pre>zxy@zxy-MIBook:~$ cd /var/www/html
+zxy@zxy-MIBook:~$ sudo vim info.php</pre>
+
+<p>在info.php中输入：</p>
+<pre><?php 
+phpinfo();
+ ?></pre>
+
+<p>然后保存文件（:wq!）退出<br>再在浏览器地址栏里输入localhost/info.php，如果出现PHP的配置信息，那么这一步配置成功！</p>
+<h5 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h5><pre>zxy@zxy-MIBook:~$ sudo apt install mysql-server php7.0-mysql
+zxy@zxy-MIBook:~$ sudo apt-get install mysql-client
+      // <!--  /*  这是注释：这里会让你设置Mysql的密码  */ --> 
+
+zxy@zxy-MIBook:~$ mysql_secure_installation 
+      // <!--  /*  这是注释：这一项可以不用设置  */ --> </pre>
+
+<h5 id="安装PHPMyadmin"><a href="#安装PHPMyadmin" class="headerlink" title="安装PHPMyadmin"></a>安装PHPMyadmin</h5><pre>zxy@zxy-MIBook:~$ sudo apt-get install phpmyadmin
+zxy@zxy-MIBook:~$ sudo apt-get install php-mbstring
+      // <!--  /*  这是注释：这一步非常非常重要！千万别漏！  */ -->
+zxy@zxy-MIBook:~$ sudo apt-get install php-gettext
+zxy@zxy-MIBook:~$ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
+      // <!--  /*  这是注释：把phpmyadmin链接到Apache的默认目录/var/www/html下  */ --></pre>
+
+<h5 id="配置PHPMyadmin"><a href="#配置PHPMyadmin" class="headerlink" title="配置PHPMyadmin"></a>配置PHPMyadmin</h5><pre>zxy@zxy-MIBook:~$ vim /etc/php/7.0/apache2/php.ini </pre>
+
+<p>打开了php.ini后，在文件里面找到以下几行：<br><strong>display_errors = Off</strong> 改为：<br><strong>display_errors = On</strong> (显示错误日志，文件中出现的都要改，除非是注释，不然无效)</p>
+<p><strong>;extension=php_mbstring.dll</strong> 改为：<br><strong>extension=php_mbstring.dll</strong> (也就是取消注释，为了开启mbstring)  </p>
+<p>php.ini文件改动好了以后就重启Apache2服务：</p>
+<pre>zxy@zxy-MIBook:~$ /etc/init.d/apache2 restart </pre>
+
+<h5 id="验证-2"><a href="#验证-2" class="headerlink" title="验证"></a>验证</h5><p>在浏览器地址栏中输入localhost/phpmyadmin，如果显示PHPMyadmin登录界面，那么这一步配置成功！</p>
+<p>那么所有的步骤配置完成了，你的本地Web服务器也就配置完成了，你就可以尽情地被它蹂躏了！（斜眼笑）</p>
+<p>-完-</p>
+<p>See U Next Chapter!<br>@转载请说明出处，谢谢！</p>
+
+        </section>
+
+        
+          <section class="theme-post__card__license mdui-typo">
+            <span>
+              Article License: 
+              
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a>
+              
+            </span>
+            <br />
+            <span>Article Permalink: <a href="http://blog.zhuxiaoyi.com/2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/">http://blog.zhuxiaoyi.com/2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/</a></span>
+            
+              <br />
+              <span>Article Markdown: <a href="http://blog.zhuxiaoyi.com/2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）.md">http://blog.zhuxiaoyi.com/2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）.md</a></span>
+            
+          </section>
+        
+
+        
+          <section class="mdui-card-actions theme-post__card__actions">
+            
+              <button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-ripple  mdui-color-red" mdui-tooltip="{content: 'Buy me a beer?', position: 'right'}" mdui-dialog="{target: '#donateDialog'}">
+                <i class="mdui-icon fa fa-beer"></i>
+              </button>
+            
+            <div class="theme-spacer"></div>
+            
+            
+          </section>
+        
+
+        
+          
+            <script type="text/javascript">
+              themeRuntime.commentRest.function = function (newIdentifier, newUrl, newTitle) {
+                return
+              }
+            </script>
+          
+        
+      </article>
+      
+        <div class="mdui-color-theme theme-post__toc">
+          <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x66F4;&#x65B0;Ubuntu&#x8F6F;&#x4EF6;&#x5E93;" data-href="#&#x66F4;&#x65B0;Ubuntu&#x8F6F;&#x4EF6;&#x5E93;"><span class="toc-number"></span> <span class="toc-text">1. &#x66F4;&#x65B0;Ubuntu&#x8F6F;&#x4EF6;&#x5E93;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5B89;&#x88C5;Apache2" data-href="#&#x5B89;&#x88C5;Apache2"><span class="toc-number"></span> <span class="toc-text">2. &#x5B89;&#x88C5;Apache2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x9A8C;&#x8BC1;" data-href="#&#x9A8C;&#x8BC1;"><span class="toc-number"></span> <span class="toc-text">3. &#x9A8C;&#x8BC1;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5B89;&#x88C5;PHP" data-href="#&#x5B89;&#x88C5;PHP"><span class="toc-number"></span> <span class="toc-text">4. &#x5B89;&#x88C5;PHP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x9A8C;&#x8BC1;-1" data-href="#&#x9A8C;&#x8BC1;-1"><span class="toc-number"></span> <span class="toc-text">5. &#x9A8C;&#x8BC1;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5B89;&#x88C5;MySQL" data-href="#&#x5B89;&#x88C5;MySQL"><span class="toc-number"></span> <span class="toc-text">6. &#x5B89;&#x88C5;MySQL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5B89;&#x88C5;PHPMyadmin" data-href="#&#x5B89;&#x88C5;PHPMyadmin"><span class="toc-number"></span> <span class="toc-text">7. &#x5B89;&#x88C5;PHPMyadmin</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x914D;&#x7F6E;PHPMyadmin" data-href="#&#x914D;&#x7F6E;PHPMyadmin"><span class="toc-number"></span> <span class="toc-text">8. &#x914D;&#x7F6E;PHPMyadmin</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x9A8C;&#x8BC1;-2" data-href="#&#x9A8C;&#x8BC1;-2"><span class="toc-number"></span> <span class="toc-text">9. &#x9A8C;&#x8BC1;</span></a></li></ol>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="theme-spacer"></div>
+
+  
+    <div class="mdui-color-theme theme-post__toc-fab">
+  <button class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-fab-fixed mdui-hidden-md-up" mdui-menu="{target: '#toc-fab-menu', fixed: true}" id="toc-fab">
+    <i class="mdui-icon material-icons">&#xe242;</i>
+  </button>
+  <ul class="mdui-menu mdui-typo theme-post__toc-fab__menu" id="toc-fab-menu" style="padding: 8px;max-height: 80%">
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x66F4;&#x65B0;Ubuntu&#x8F6F;&#x4EF6;&#x5E93;" data-href="#&#x66F4;&#x65B0;Ubuntu&#x8F6F;&#x4EF6;&#x5E93;"><span class="toc-number"></span> <span class="toc-text">1. &#x66F4;&#x65B0;Ubuntu&#x8F6F;&#x4EF6;&#x5E93;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5B89;&#x88C5;Apache2" data-href="#&#x5B89;&#x88C5;Apache2"><span class="toc-number"></span> <span class="toc-text">2. &#x5B89;&#x88C5;Apache2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x9A8C;&#x8BC1;" data-href="#&#x9A8C;&#x8BC1;"><span class="toc-number"></span> <span class="toc-text">3. &#x9A8C;&#x8BC1;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5B89;&#x88C5;PHP" data-href="#&#x5B89;&#x88C5;PHP"><span class="toc-number"></span> <span class="toc-text">4. &#x5B89;&#x88C5;PHP</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x9A8C;&#x8BC1;-1" data-href="#&#x9A8C;&#x8BC1;-1"><span class="toc-number"></span> <span class="toc-text">5. &#x9A8C;&#x8BC1;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5B89;&#x88C5;MySQL" data-href="#&#x5B89;&#x88C5;MySQL"><span class="toc-number"></span> <span class="toc-text">6. &#x5B89;&#x88C5;MySQL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x5B89;&#x88C5;PHPMyadmin" data-href="#&#x5B89;&#x88C5;PHPMyadmin"><span class="toc-number"></span> <span class="toc-text">7. &#x5B89;&#x88C5;PHPMyadmin</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x914D;&#x7F6E;PHPMyadmin" data-href="#&#x914D;&#x7F6E;PHPMyadmin"><span class="toc-number"></span> <span class="toc-text">8. &#x914D;&#x7F6E;PHPMyadmin</span></a></li><li class="toc-item toc-level-5"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x9A8C;&#x8BC1;-2" data-href="#&#x9A8C;&#x8BC1;-2"><span class="toc-number"></span> <span class="toc-text">9. &#x9A8C;&#x8BC1;</span></a></li></ol>
+  </ul>
+</div>
+
+  
+
+  
+    <div class="theme-post__pagination mdui-color-theme">
+  
+    <div class="theme-post__pagination__prev mdui-ripple mdui-valign">
+      <a href="/2018/06/25/CentOS 7上安装配置Nginx/" class="theme-post__pagination__prev__content mdui-text-left">
+        <div>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cb;</i>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">Newer Post</span>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          CentOS 7上安装配置Nginx
+        </div>
+      </a>
+    </div>
+  
+
+  
+    <div class="theme-post__pagination__next mdui-ripple mdui-valign">
+      <a href="/2018/06/25/如何建站（一） - 建站必备知识及域名与服务器的购买/" class="theme-post__pagination__next__content mdui-text-right">
+        <div>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">Older Post</span>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cc;</i>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          如何建站（一） - 建站必备知识及域名与服务器的购买
+        </div>
+      </a>
+    </div>
+    
+</div>
+
+  
+
+  
+    <div class="mdui-dialog" id="donateDialog">
+      <div class="mdui-dialog-title">Buy me a beer?</div>
+      <div class="mdui-dialog-content">
+        <div class="mdui-list">
+          
+            <a href="/img/avatar.png" title="wechat" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-wechat mdui-text-center"></i>&emsp;
+              
+              
+              
+              wechat
+            </a>
+          
+            <a href="https://paypal.com" title="paypay" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-paypal mdui-text-center"></i>&emsp;
+              
+              
+              
+              paypay
+            </a>
+          
+        </div>
+      </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple mdui-ripple" mdui-dialog-close>Cancel</button>
+      </div>
+    </div>
+  
+</div>
+<script type="text/javascript">
+  themeRuntime.scriptsMap.post = [];
+  if (document.querySelector('.theme-post__toc-fab__menu > ol') !== null && document.querySelector('.theme-post__toc > ol') !== null) {
+    tocHighlight()
+    function tocHighlight() {
+      var timer;
+      function doWork() {
+        listens.forEach(function(value, index) {
+          value[1]();
+          value[0].classList.remove("mdui-list-item-active");
+        })
+        let actionToc = (listens[listens.reduce(function(r, v, index) {
+          if (v[2] == true) {
+            return index;
+          } else return r;
+        }, undefined)] || [])[0] || listens[0][0];
+        actionToc.classList.add("mdui-list-item-active");
+        if(actionToc.getClientRects().length == 0)return;
+        showToc(actionToc);
+      }
+      function showToc(toc) {
+        let offsetTop = toc.getClientRects()[0].top - cardToc.getClientRects()[0].top - 40;
+        let offsetBottom = toc.getClientRects()[0].bottom - cardToc.getClientRects()[0].bottom + 40;
+        let offset = 0;
+        if (offsetTop < 0) offset = offsetTop;
+        if (offsetBottom > 0) offset = offsetBottom;
+        var targetTop = Math.max(0, Math.min(cardToc.scrollTop + offset, toclist.offsetHeight - cardToc.offsetHeight));
+        clearInterval(timer);
+        timer = setInterval(function() {
+          var now = cardToc.scrollTop;
+          var speed = (targetTop - now) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (Math.abs(now - targetTop) < 1) {
+            clearInterval(timer);
+          }
+          cardToc.scrollTop = now + speed;
+        }, 30);
+      }
+      var listens = [];
+      var cardToc = document.querySelector('.theme-post__toc');
+      var links = cardToc.querySelectorAll(".theme-post__toc__content__link");
+      var toclist = document.querySelector(".theme-post__toc > ol");
+      Array.prototype.forEach.call(links, function(value, index) {
+        var id = (value.getAttribute("href") || "#").slice(1);
+        var element = document.getElementById(id);
+        listens.push([value, function() {
+          var readed = false;
+          var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+          if (element.offsetTop <= scrollTop + element.clientHeight + 64) {
+            readed = true;
+          } else {
+            readed = false;
+          }
+          listens[index][2] = readed;
+        }, false])
+      })
+      doWork();
+      window.addEventListener("scroll", doWork)
+      var listener = {
+        function:  doWork,
+        event: 'scroll',
+        el: window,
+        removed: false
+      }
+      themeRuntime.scriptsMap.post.push(listener)
+    }
+  }
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var postLastModifiedDate = 1529920841914
+    var today = (new Date()).getTime()
+    var difference = Math.floor((today - postLastModifiedDate)/(24*60*60*1000))
+    if (difference >= 100) {
+      document.querySelector('.theme-post__card__warning').style.display = 'block'
+      document.querySelector('#content-warning').textContent = difference
+    }
+  })();
+</script>
+
+<script type="text/javascript">
+  var images = document.querySelectorAll('.theme-post__card__content img')
+  for (i = 0; i < images.length; i++) {
+    //console.log('image added', i)
+    images[i].addEventListener("click", openLG);
+    var listener = {
+      function:  openLG,
+      event: 'click',
+      el: images[i],
+      removed: false
+    }
+    themeRuntime.scriptsMap.post.push(listener)
+  }
+  function openLG() {
+    var img_src = this.getAttribute('src');
+    var img_alt = this.getAttribute('alt');
+    lightGallery(this, {
+      dynamic: true,
+      counter: false,
+      dynamicEl: [{
+        "src": img_src,
+        'subHtml': "<span author>HadesZ</span><div descr>" + img_alt + "</div>"
+      }],
+    });
+  }
+</script>
+
+
+
+
+      </div>
+    </div>
+  </main>
+
+  <div id="outdated" style="z-index: 9999;">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+  </div>
+  <!-- import js -->
+
+
+  <script src="/js/outdatedbrowser.min.js"></script>
+
+
+
+  
+    <script src="/js/js.barba.min.js"></script>
+    <script type="text/javascript">
+      Barba.Utils.errorPageUrl = '/404.html';
+    </script>
+  
+
+
+<!-- theme js -->
+<script type="text/javascript">
+  (function() {
+    var appbarTopFlag = false;
+    var appbarEl = document.querySelector('.theme-appbar');
+    function appbarShadow() {
+      var bodyScrolled = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+      if (bodyScrolled > 0 && !appbarTopFlag) {
+        appbarEl.classList.add('theme-appbar--shadow');
+        appbarTopFlag = true;
+      } else if (bodyScrolled === 0 && appbarTopFlag) {
+        appbarEl.classList.remove('theme-appbar--shadow');
+        appbarTopFlag = false;
+      }
+    }
+    appbarShadow()
+    window.addEventListener('scroll', appbarShadow);
+  })();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+  document.querySelector('body').classList.add('theme-loaded')
+</script>
+
+
+</body>
+</html>

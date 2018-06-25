@@ -1,0 +1,1110 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+
+
+
+<head>
+  <script>
+    window.mduiVersion = "2.0.0"
+    window.oldVersion = [
+     '1.4.1',
+     '1.4.5',
+     'unknownVersion'
+    ]
+    window.themeRuntime = {
+      root: "/",
+      scriptsMap: {},
+      init: {
+        status: false
+      },
+      commentRest: {
+        status: false
+      }
+    };
+    console.info("%cCopyright © 2017 Halyul\n"+'Theme Version: 2.0.0'+'%c\nhttps://github.com/Halyul/hexo-theme-mdui',"font-size: 14px;color: #3F51B5;","color: #448AFF;text-decoration: none");
+  </script>
+  <!--
+        © HEXO MDUI Theme
+        https://github.com/Halyul/hexo-theme-mdui
+        Version: 2.0.0 -->
+
+  <meta charset="UTF-8">
+  <title>CentOS 7上安装配置Nginx - Hexo</title>
+
+  <!-- Favicons -->
+  <link rel="icon shortcut" type="image/ico" href="/images/favicon.png">
+  <link rel="icon" sizes="192x192" href="/images/favicon.png">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  <!-- Meta & Info -->
+  <meta http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta name="theme-color" content="#fff">
+
+  <meta name="author" content="HadesZ">
+  
+  <meta name="keywords" content="blog, hexo, mdui">
+
+  <!--iOS -->
+  <meta name="apple-mobile-web-app-title" content="Hexo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="480">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- The Open Graph protocol -->
+  <meta property="og:url" content="http://blog.zhuxiaoyi.com">
+  <meta property="og:type" content="blog">
+  <meta property="og:title" content="CentOS 7上安装配置Nginx - Hexo | Hexo">
+  <meta property="og:image" content="/images/favicon.png" />
+  
+
+  
+
+  
+
+  <!-- Import CSS -->
+  
+    <link rel="stylesheet" href="/css/mdui.css">
+  
+
+  
+
+</head>
+
+
+<body class="mdui-drawer-body-left mdui-theme-primary-indigo mdui-theme-accent-pink">
+
+  <style>
+    #spinner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+          opacity: 1;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+          transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+    }
+    main {
+      opacity: 0;
+      -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      transition: opacity 0.3s cubic-bezier(0, 0, 0.2, 1);
+      display: none;
+    }
+  </style>
+  <div id="spinner">
+    <style>
+      .spinner {
+
+      -webkit-animation: rotator 1.4s linear infinite;
+              animation: rotator 1.4s linear infinite;
+      }
+
+      @-webkit-keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      @keyframes rotator {
+      0% {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+      }
+      }
+
+      .path {
+      stroke-dasharray: 187;
+      stroke-dashoffset: 0;
+      -webkit-transform-origin: center;
+              transform-origin: center;
+      -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+              animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+      }
+
+      @-webkit-keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @keyframes colors {
+      0% {
+        stroke: #4285F4;
+      }
+      25% {
+        stroke: #DE3E35;
+      }
+      50% {
+        stroke: #F7C223;
+      }
+      75% {
+        stroke: #1B9A59;
+      }
+      100% {
+        stroke: #4285F4;
+      }
+      }
+
+      @-webkit-keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+
+      @keyframes dash {
+      0% {
+        stroke-dashoffset: 187;
+      }
+      50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+                transform: rotate(135deg);
+      }
+      100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+                transform: rotate(450deg);
+      }
+      }
+    </style>
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
+
+  <main>
+    <div class="mdui-appbar mdui-appbar-fixed mdui-color-white mdui-shadow-0 theme-appbar">
+  <div class="mdui-toolbar theme-toolbar-top">
+    
+      <a href="/" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--arrow">
+        <i class="mdui-icon">
+          <span></span>
+        </i>
+      </a>
+    
+  </div>
+  <div class="mdui-toolbar theme-toolbar-bottom">
+    <span class="theme-toolbar-bottom__title">Hexo</span>
+    
+      <a href="/search.html" class="mdui-textfield-icon mdui-btn mdui-btn-icon theme-toolbar-bottom__search">
+        <i class="mdui-icon material-icons">&#xe8b6;</i>
+      </a>
+    
+  </div>
+  <div class="mdui-progress theme-appbar__progress" id="progressBar">
+    <div class="mdui-progress-indeterminate"></div>
+  </div>
+</div>
+
+    <div class="mdui-drawer mdui-drawer-full-height theme-drawer" id="drawer">
+  <!-- header -->
+  <div class="theme-drawer__header">
+  <div class="theme-drawer__header__layer-1">
+    <div class="mdui-toolbar theme-toolbar-top">
+      
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple theme-appbar__burger theme-appbar__burger--drawer theme-appbar__burger--arrow" id="drawer-back">
+          <i class="mdui-icon">
+            <span></span>
+          </i>
+        </a>
+      
+    </div>
+    <div class="mdui-toolbar theme-toolbar-bottom">
+      <span class="theme-toolbar-bottom__title">Hexo</span>
+    </div>
+  </div>
+  <div class="theme-drawer__header__layer-2" style="background-image: url(/images/bg.png)">
+    <img class="mdui-img-circle theme-drawer__header__layer-2__user__avatar" src="/images/avatar.png"/>
+    <div class="theme-drawer__header__layer-2__user__info">
+      <div class="theme-drawer__header__layer-2__user__info__author mdui-text-color-white-text">
+        HadesZ
+      </div>
+      <div class="theme-drawer__header__layer-2__user__info__slogan mdui-text-color-white-secondary">
+        I&#39;m your slogan!
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="theme-drawer__warpper">
+    <!-- content -->
+    <div class="theme-drawer__warpper__content">
+  <ul class="mdui-list">
+    <a href="/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe88a;</i>
+      <div class="mdui-list-item-content">Index</div>
+    </a>
+    <a href="/archives/" class="mdui-list-item mdui-ripple mdui-ripple-white">
+      <i class="mdui-list-item-icon mdui-icon material-icons">&#xe149;</i>
+      <div class="mdui-list-item-content">Archives</div>
+    </a>
+    <ul class="mdui-list mdui-collapse" mdui-collapse="{accordion: true}" mdui-collapse>
+      
+      
+      <div class="mdui-collapse-item ">
+        <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+          <i class="mdui-list-item-icon mdui-icon material-icons">&#xe916;</i>
+          <div class="mdui-list-item-content">Years</div>
+          <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+        </div>
+        <div class="mdui-collapse-item-body mdui-list">
+          
+          
+            <a href="/archives/2018/" class="mdui-list-item mdui-ripple">
+              2018
+            </a>
+          
+        </div>
+      </div>
+    </ul>
+  </ul>
+  
+    <div class="mdui-divider"></div>
+    <ul class="mdui-list" mdui-collapse="{accordion: true}" mdui-collapse>
+      
+        
+          
+            <a href="/friends" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">&#xe0ba;</i>
+              
+              
+              <div class="mdui-list-item-content">Test1</div>
+            </a>
+        
+      
+        
+          
+            <a href="/apply-for-link" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-child mdui-text-center"></i>
+              
+              
+              
+              <div class="mdui-list-item-content">Test2</div>
+            </a>
+        
+      
+        
+          
+            <a href="/galleries" target="_self" class="mdui-list-item mdui-ripple mdui-ripple-white">
+          
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">Test3</div>
+            </a>
+        
+      
+        
+          <div class="mdui-collapse-item">
+            <div class="mdui-collapse-item-header mdui-list-item mdui-ripple mdui-ripple-white">
+              
+              
+                <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+              
+              
+              <div class="mdui-list-item-content">Test4</div>
+              <i class="mdui-collapse-item-arrow mdui-icon material-icons">&#xe5c5;</i>
+            </div>
+            <div class="mdui-collapse-item-body mdui-list">
+              
+                
+                  <a href="/myfriends" class="mdui-list-item mdui-ripple mdui-ripple-white" target="_self">
+                
+                    TEST1
+                  </a>
+              
+                
+                  <a href="/timeline" class="mdui-list-item mdui-ripple mdui-ripple-white" target="_self">
+                
+                    TEST2
+                  </a>
+              
+            </div>
+          </div>
+        
+      
+    </ul>
+  
+</div>
+
+    <div class="theme-spacer"></div>
+    <!-- footer -->
+    <div class="theme-drawer__warpper__footer">
+  <div class="mdui-typo mdui-typo-caption-opacity">
+    Powered by <a href="http://hexo.io" target="_blank">Hexo</a>
+    <br />
+    Theme - <a href="//github.com/Halyul/hexo-theme-mdui" target="_blank">Halyul/MDUI</a>
+    <br />
+    <span>
+      Copyright ©
+      <span year></span>
+      HadesZ
+    </span>
+    
+    
+      <br />
+      <span>
+        Last Updated: 6月 25, 2018
+      </span>
+    
+    
+  </div>
+</div>
+<script type="text/javascript">
+  var copyrightNow = new Date().getFullYear();
+  var textContent = document.querySelector('span[year]')
+  
+    textContent.textContent = copyrightNow
+  
+</script>
+
+  </div>
+</div>
+
+    <div id="top"></div>
+
+    <script src="/js/lightgallery.min.js"></script>
+
+    <div id="barba-wrapper">
+      <div class="barba-container"  data-namespace="post">
+        
+
+
+
+  <link rel="stylesheet" href="/css/prism/darcula.min.css">
+
+
+  <link rel="stylesheet" href="/css/prism/line-number.min.css">
+
+
+<div class="theme-post">
+  <div class="theme-post__background mdui-color-theme"></div>
+  <div class="theme-post__header mdui-color-theme">
+    <div class="theme-post__header__title mdui-text-truncate">
+      CentOS 7上安装配置Nginx
+    </div>
+    <div class="theme-spacer"></div>
+    <div class="theme-post__header__actions mdui-valign">
+      <div>
+        <span>Posted: </span>
+        <span style="float: right">6月 25, 2018</span>
+        
+      </div>
+      
+  <div class="theme-post__qrcode">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon mdui-hidden-xs-down" mdui-menu="{target: '#qrcode-menu'}">
+      <i class="mdui-icon material-icons">&#xe337;</i>
+    </button>
+    <ul class="mdui-menu" id="qrcode-menu">
+      <li class="mdui-list-item" style="cursor: auto">
+        Article QR Code
+      </li>
+        <img class="mdui-img-fluid" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC2UlEQVR42u3awU7kMBAE0Pn/n2avK6HMVLWzkLVfTmgwiZ+RaLorr68jrxc2NjY2NjY2Njb2I9mv+Lq83bfv/v3J1X3eP+Vq5cqesbGxsfdmf/jTf7EmZ7QHNNvPh2dhY2NjH8BOysnVA+46gpXDer9nbGxsbOy8YCTrozFQ2ahgY2NjYxe3GA19krKHjY2Njb3CzotTgvkXYcCvzdKwsbGxH8/OQ9PnfP2j+TY2Njb2g9kr4568UUkOOm9jhnvGxsbG3pQ9GxjNRj9Rw7AwhMLGxsY+mZ0/pg0GksPNP8/xRQeGjY2N/Z+zk/KQ3DoPDFZ+amklNjY29qbs/J/7ehxfHtbsaPLQGhsbG3tXdttU5MVpJQzIX+hJLNjY2NjnsNthUx4ktMOmdrQUBczY2NjYm7Jnj2lfyswLTx5FtM/CxsbG3pW9HqPmrcVd9x9GxdjY2NiHsfOG4X1ZakPZ9miKPWNjY2Nvys7/6W+H9fnx1U1F+VxsbGzsvdltyclDhZVxVVvMhkMlbGxs7I3YK7fOh/jJ+GkWNketCzY2NvbW7LwxyBuSWSibF7Z6CIWNjY19GLstcm3suh4GtKMubGxs7F3Z7UszSWSbxwBtI7SyBhsbG3tXdl6QZtttQ4KVMVNdt7GxsbG3YLfFYBbQ5qOr9m7FLwkbGxt7U3bSbLRr8iI0u2e+HhsbG/sE9kocOxv3/GRDgo2NjX0COykSd8W3bVFsXwb60AJhY2Njb8q+q2FYKVrtTtpDwcbGxt6bfVfbMAuA2wHWbD/Y2NjYe7Nf8ZVvIg+M28FW/rPRLA0bGxt7I3Y+QkperFlpM2aFMCqB2NjY2AewZ0P8e48jWdmGGdjY2NjYLWO9pOUlammohI2NjX0k+94trocQyf6xsbGxz2EnQ6W7IoG8jLWHVbci2NjY2Fuw86B3VnjadiVf/34P2NjY2Cewz7mwsbGxsbGxsbGxH3P9AQ+VC20pRXQoAAAAAElFTkSuQmCC" style="cursor: auto">
+    </ul>
+  </div>
+
+
+      
+  <div class="theme-post__share">
+    <button class="mdui-btn mdui-ripple mdui-btn-icon" mdui-menu="{target: '#post-share-menu'}">
+      <i class="mdui-icon material-icons">&#xe80d;</i>
+    </button>
+
+    <ul class="mdui-menu" id="post-share-menu">
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.zhuxiaoyi.com//2018/06/25/CentOS 7上安装配置Nginx/index.html" target="_blank" class="mdui-ripple">
+                Share to Facebook
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://plus.google.com/share?url=http://blog.zhuxiaoyi.com//2018/06/25/CentOS 7上安装配置Nginx/index.html" target="_blank" class="mdui-ripple">
+                Share to Google+
+            </a>
+        </li>
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://blog.zhuxiaoyi.com//2018/06/25/CentOS 7上安装配置Nginx/index.html&title=CentOS 7上安装配置Nginx" target="_blank" class="mdui-ripple">
+                Share to Linkedin
+            </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li class="mdui-menu-item">
+            <a href="https://twitter.com/intent/tweet?text=CentOS 7上安装配置Nginx&url=http://blog.zhuxiaoyi.com//2018/06/25/CentOS 7上安装配置Nginx/index.html&via=HadesZ" target="_blank" class="mdui-ripple">
+                Share to Twitter
+            </a>
+        </li>
+      
+
+      
+
+    </ul>
+  </div>
+
+
+    </div>
+  </div>
+  <div class="theme-post__warpper
+    
+  ">
+    <div class="theme-post__warpper__container">
+      <article class="mdui-card theme-post__card mdui-hoverable">
+        <section class="theme-post__card__warning">
+          This article was last modified
+          <span id="content-warning"></span>
+          days ago.
+          The content of this post may be outdated!
+        </section>
+        
+        
+          <section class="mdui-card-media">
+            <img src="/images/random/37.png"/>
+          </section>
+        
+        <section class="mdui-typo theme-post__card__content">
+          <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#1">一、预备工作</a><ul>
+<li><a href="#1.1">1.1 gcc 安装</a></li>
+<li><a href="#1.2">1.2 PCRE pcre-devel 安装</a></li>
+<li><a href="#1.3">1.3 zlib 安装</a></li>
+<li><a href="#1.4">1.4 OpenSSL 安装</a></li>
+</ul>
+</li>
+<li><a href="#2">二、下载、安装以及配置Nginx服务</a><ul>
+<li><a href="#2.1">2.1 Nginx 下载</a></li>
+<li><a href="#2.2">2.2 Nginx 安装包解压</a></li>
+<li><a href="#2.3">2.3 Nginx 配置</a></li>
+<li><a href="#2.4">2.4 Nginx 编译安装</a></li>
+<li><a href="#2.5">2.5 Nginx 添加进环境变量</a></li>
+<li><a href="#2.6">2.6 Nginx 服务启动与停止</a></li>
+<li><a href="#2.7">2.7 Nginx 开机自启动</a></li>
+</ul>
+</li>
+<li><a href="#3">三、自签名证书配置HTTPS</a><ul>
+<li><a href="#3.1">3.1 创建服务器证书密钥文件</a></li>
+<li><a href="#3.2">3.2 创建服务器证书的申请文件</a></li>
+<li><a href="#3.3">3.3 备份服务器密钥文件</a></li>
+<li><a href="#3.4">3.4 删除密钥文件保护密码</a></li>
+<li><a href="#3.5">3.5 生成证书文件</a></li>
+<li><a href="#3.6">3.6 配置Nginx的ssl模块</a></li>
+<li><a href="#3.7">3.7 修改本地hosts文件</a></li>
+</ul>
+</li>
+<li><a href="#4">四、Nginx 设置HTTP、HTTPS二级域名</a><ul>
+<li><a href="#4.1">4.1 设置HTTP二级域名</a></li>
+<li><a href="#4.2">4.2 设置HTTP二级域名</a></li>
+<li><a href="#4.3">4.3 本地二级域名配置注意事项</a></li>
+</ul>
+</li>
+<li><a href="#5">五、Nginx 设置反向代理服务至二级域名下</a></li>
+</ul>
+<h2 id="一、预备工作"><a href="#一、预备工作" class="headerlink" title="一、预备工作"></a><span id="1">一、预备工作</span></h2><p><strong><span id="1.1">1.1 gcc 安装</span></strong></p>
+<p>安装 nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装：</p>
+<pre><code>yum install gcc-c++
+</code></pre><p><strong><span id="1.2">1.2 PCRE pcre-devel 安装</span></strong></p>
+<p>PCRE(Perl Compatible Regular Expressions) 是一个Perl库，包括 perl 兼容的正则表达式库。nginx 的 http 模块使用 pcre 来解析正则表达式，所以需要在 linux 上安装 pcre 库，pcre-devel 是使用 pcre 开发的一个二次开发库。nginx也需要此库。命令：</p>
+<pre><code>yum install -y pcre pcre-devel
+</code></pre><p><strong><span id="1.3">1.3 zlib 安装</span></strong></p>
+<p>zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip ，所以需要在 Centos 上安装 zlib 库。</p>
+<pre><code>yum install -y zlib zlib-devel
+</code></pre><p><strong><span id="1.4">1.4 OpenSSL 安装</span></strong></p>
+<p>OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议，并提供丰富的应用程序供测试或其它目的使用。<br>nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http），所以需要在 Centos 安装 OpenSSL 库。</p>
+<pre><code>yum install -y openssl openssl-devel
+</code></pre><h2 id="二、下载、安装以及配置Nginx服务"><a href="#二、下载、安装以及配置Nginx服务" class="headerlink" title="二、下载、安装以及配置Nginx服务"></a><span id="2">二、下载、安装以及配置Nginx服务</span></h2><p><strong><span id="2.1">2.1 Nginx 下载</span></strong></p>
+<p>到<a href="https://nginx.org/en/download.html" target="_blank" rel="noopener">Nginx官网</a>寻找需要下载的tar.gz安装包的链接地址，</p>
+<p><img src="https://i.imgur.com/9MFw49G.png" alt="Nginx官网下载列表"></p>
+<p>使用wget命令下载：</p>
+<pre><code>wget -c https://nginx.org/download/nginx-1.10.3.tar.gz
+</code></pre><p><strong><span id="2.2">2.2 Nginx 安装包解压</span></strong></p>
+<pre><code>tar -zxvf nginx-1.10.3.tar.gz
+cd nginx-1.10.3
+</code></pre><p><strong><span id="2.3">2.3 Nginx 配置</span></strong></p>
+<p>在标准配置安装以外，我们需要开启 <strong>http_ssl_module</strong> 以及 <strong>http_gzip_static_module</strong> 两个模块来开启 https 服务以及 encoding-gzip 传输</p>
+<pre><code>./configure --prefix=/usr/local/nginx --with-http_ssl_module --with-http_gzip_static_module
+</code></pre><p><strong><span id="2.4">2.4 Nginx 编译安装</span></strong></p>
+<pre><code>make
+make install
+</code></pre><p>命令执行完成后会默认安装在 <strong>/usr/local/nginx</strong> 中</p>
+<p>或者执行以下命令查找 Nginx 所在文件夹：</p>
+<pre><code>whereis nginx
+</code></pre><p><img src="https://i.imgur.com/pzDPXGv.png" alt="whereis nginx"></p>
+<p><strong><span id="2.5">2.5 Nginx 添加进环境变量</span></strong></p>
+<p>如果上一步提示 nginx 不是一个命令，那就在这一步将 nginx 添加进环境变量中：</p>
+<pre><code>vim /etc/profile
+</code></pre><p>在最后一行加上：</p>
+<pre><code>export PATH=/usr/local/nginx/sbin:$PATH
+</code></pre><p><img src="https://i.imgur.com/YV1ZWi2.png" alt="环境变量"></p>
+<p>此时再次执行nginx将不会报找不到命令了</p>
+<p><strong><span id="2.6">2.6 Nginx 服务启动与停止</span></strong></p>
+<p>服务命令简介：</p>
+<pre><code>nginx                 # 启动服务
+nginx -s quit        # 退出服务，此方式停止步骤是待nginx进程处理任务完毕进行停止
+nginx -s stop        # 停止服务，此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程
+nginx -s reload        # 重载服务
+</code></pre><p>服务<strong>停止操作流程</strong>：</p>
+<pre><code>nginx                # 先开启服务
+nginx -s quit        # 停止服务前先退出服务
+nginx -s stop        # 再停止服务
+</code></pre><p>服务<strong>重启操作流程</strong>：</p>
+<pre><code>nginx                # 先开启服务
+nginx -s quit        # 重启服务前先退出服务
+nginx                # 最后重启服务
+</code></pre><p>服务<strong>重载操作流程</strong>：</p>
+<pre><code>nginx -s reload        # 当 nginx 的配置文件 nginx.conf 被修改后，要想让配置生效需要重启 nginx，使用-s reload不用先停止再启动即可将配置信息在 nginx 中生效
+</code></pre><p>查询nginx进程：</p>
+<pre><code>ps aux|grep nginx
+</code></pre><p><strong><span id="2.7">2.7 Nginx 开机自启动</span></strong></p>
+<p>在 <strong>/etc/rc.local</strong> 中增加启动代码即可：</p>
+<pre><code>vi /etc/rc.local
+</code></pre><p>在文本末尾增加一行 <strong>/usr/local/nginx/sbin/nginx</strong></p>
+<p><img src="https://i.imgur.com/R8KxcmA.png" alt="开机自启动"></p>
+<blockquote>
+<p><em>参考链接：<a href="https://www.linuxidc.com/Linux/2016-09/134907.htm" target="_blank" rel="noopener">CentOS 7 下安装 Nginx</a></em></p>
+</blockquote>
+<h2 id="三、自签名证书配置HTTPS"><a href="#三、自签名证书配置HTTPS" class="headerlink" title="三、自签名证书配置HTTPS"></a><span id="3">三、自签名证书配置HTTPS</span></h2><p><strong><span id="3.1">3.1 创建服务器证书密钥文件</span></strong></p>
+<pre><code>[root@CentOS ~]# cd /usr/local/nginx/conf &amp;&amp; mkdir -p ssl &amp;&amp; cd ssl
+[root@CentOS ssl]# openssl genrsa -des3 -out ca.key 1024
+</code></pre><p>然后填写密钥保护密码：</p>
+<pre><code>Enter PEM pass phrase:                        # 输入密钥保护密码
+Verifying - Enter PEM pass phrase:            # 确认密钥保护密码
+</code></pre><p>回车结束</p>
+<p><strong><span id="3.2">3.2 创建服务器证书的申请文件</span></strong></p>
+<pre><code>[root@CentOS ssl]# openssl req -new -key ca.key -out ca.csr
+Enter pass phrase for root.key:                                                 # 输入前面创建的密码 
+Country Name (2 letter code) [AU]:CN                                             # 国家代号，中国输入CN 
+State or Province Name (full name) [Some-State]:BeiJing                         # 省的全名，拼音 
+Locality Name (eg, city) []:BeiJing                                             # 市的全名，拼音 
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:MyCompany Corp.         # 公司英文名 
+Organizational Unit Name (eg, section) []:                                         # 可以不输入 
+Common Name (eg, YOUR name) []:                                                 # 此时不输入 
+Email Address []:admin@mycompany.com                                             # 电子邮箱，可随意填
+Please enter the following ‘extra’ attributes 
+to be sent with your certificate request 
+A challenge password []:                                                         # 可以不输入 
+An optional company name []:                                                     # 可以不输入
+</code></pre><p><strong><span id="3.3">3.3 备份服务器密钥文件</span></strong></p>
+<pre><code>[root@CentOS ssl]# cp ca.key ca.key.backup
+</code></pre><p><strong><span id="3.4">3.4 删除密钥文件保护密码</span></strong></p>
+<pre><code>[root@CentOS ssl]# openssl rsa -in ca.key.backup -out ca.key
+</code></pre><p><strong><span id="3.5">3.5 生成证书文件</span></strong></p>
+<pre><code>[root@CentOS ssl]# openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt
+</code></pre><p><strong><span id="3.6">3.6 配置Nginx的ssl模块</span></strong></p>
+<p>修改 Nginx 服务下的 nginx.conf</p>
+<pre><code>[root@CentOS ~]# vi /usr/local/nginx/conf/nginx.conf
+</code></pre><p>然后在 # HTTPS server 下将原有的 server 修改如下：</p>
+<pre><code>server {
+    listen       443 default ssl;
+    server_name  zxy.com;
+
+    ssl     on;
+
+    ssl_certificate      /home/yg-zxy/ssl-file/ssl-30-server.crt;
+    ssl_certificate_key  /home/yg-zxy/ssl-file/ssl-30-server.key;
+
+    location / {
+        root   html;
+        index  index.html index.htm;
+    }
+}
+</code></pre><p><strong><em>Tips：</em></strong></p>
+<p><strong>listen:</strong> 设置ssl监听端口，默认设置443即可，default可以省略</p>
+<p><strong>server_name:</strong> 设置服务器域名，这里配合接下来介绍到的修改hosts文件可以做到通过域名访问，域名随意设置，比如 <strong>zxy.com</strong></p>
+<p><strong>ssl:</strong> 开启ssl模块</p>
+<p><strong>ssl_certificate:</strong> 证书、公钥，需要发送到客户端的</p>
+<p><strong>ssl_certificate_key:</strong> 私钥</p>
+<p><strong>location:</strong> 服务器路由匹配配置</p>
+<p><strong><span id="3.7">3.7 修改本地hosts文件</span></strong></p>
+<p>ssl证书设置好了，但是想要验证https能不能访问则得需要域名才行。</p>
+<p>当然我们不一定真的要去买一个域名来验证，可以通过修改本地hosts文件的方式来拦截、修改本地的域名解析过程：</p>
+<p><strong>Windows平台：</strong></p>
+<pre><code>attrib -R C:\WINDOWS\system32\drivers\etc\hosts
+@echo 127.0.0.1 zxy.com &gt;&gt;C:\WINDOWS\system32\drivers\etc\hosts
+@echo 127.0.0.1 www.zxy.com &gt;&gt;C:\WINDOWS\system32\drivers\etc\hosts
+</code></pre><p>在本地新建一个文本文档，然后将这两行代码复制到文本文档中，另存为 <strong>changeHosts.bat</strong></p>
+<p>然后双击（可能需要右击管理员权限运行）执行 <strong>changeHosts.bat</strong> 文件</p>
+<p>等到CMD窗口执行完成以后，即可在浏览器访问 <a href="https://zxy.com" title="https://zxy.com" target="_blank" rel="noopener">https://zxy.com</a></p>
+<p><strong>Linux平台：</strong></p>
+<p><em>root用户：</em></p>
+<pre><code>[root@CentOS ~]# vi /etc/hosts
+</code></pre><p><em>非root用户：</em></p>
+<pre><code>[user@CentOS ~]# sudo vi /etc/hosts
+[sudo] password for user:                    # 输入当前用户的密码
+</code></pre><p>然后在文末添加一行： <strong>127.0.0.1 zxy.com</strong></p>
+<pre><code>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+127.0.0.1   zxy.com
+127.0.0.1    www.zxy.com
+</code></pre><p>保存然后退出</p>
+<blockquote>
+<p><strong>Tips: 修改host的操作一定要在访问的主机上进行，而不是被访问的服务器上进行</strong></p>
+</blockquote>
+<p><strong>在本地（浏览器）访问 <a href="https://zxy.com" title="https://zxy.com" target="_blank" rel="noopener">https://zxy.com</a> 时会遇到如下问题：</strong></p>
+<p><img src="https://i.imgur.com/vd0x2Zx.png" alt="证书不安全"></p>
+<p>提示你访问的地址不安全，这是因为我们的ssl证书是我们自己创建的，并未经过任何可信的第三方认证。所以浏览器会告诉用户，这个证书是未经可信第三方认证的证书，会有风险。但是在正式的公网环境中，我们肯定是需要取得可信第三方认证的DV或者EV证书的</p>
+<p>我们点击“高级”，继续点击“<a href="https://zxy.com" target="_blank" rel="noopener">继续前往zxy.com（不安全）</a>”即可</p>
+<p><img src="https://i.imgur.com/WKPr9kT.png" alt="继续访问"></p>
+<blockquote>
+<p><em>参考链接：<a href="https://www.cnblogs.com/eaglezb/p/6074811.html" target="_blank" rel="noopener">Nginx配置 HTTPS 证书网站</a></em></p>
+</blockquote>
+<h2 id="四、Nginx-设置HTTP、HTTPS二级域名"><a href="#四、Nginx-设置HTTP、HTTPS二级域名" class="headerlink" title="四、Nginx 设置HTTP、HTTPS二级域名"></a><span id="4">四、Nginx 设置HTTP、HTTPS二级域名</span></h2><p><strong><span id="4">4.1 设置HTTP二级域名</span></strong></p>
+<p>修改 Nginx 服务下的 nginx.conf</p>
+<pre><code>[root@CentOS ~]# vi /usr/local/nginx/conf/nginx.conf
+</code></pre><p>将http中server的内容：</p>
+<pre><code>server {
+    listen 80;
+    server_name zxy.com;
+
+    location / {
+        root   html;
+        index  index.html index.htm;
+    }
+}
+</code></pre><p>修改为二级域名正则通配形式：</p>
+<pre><code>server {
+    listen 80;
+    server_name zxy.com;
+
+    if ( $host ~* (\b(?!www\b)\w+)\.\w+\.\w+ ) {
+        set $subdomain /$1;
+    }
+    location / {
+        root html$subdomain;
+        index index.html index.htm;
+    }
+}
+</code></pre><p>以这种方式配置二级域名的好处就是不需要再单独配置其他二级域名了，只需要在 <strong>/usr/local/nginx/html</strong> 下创建响应的文件夹即可访问相应的二级域名。</p>
+<p>检测 Nginx 服务配置是否正确：</p>
+<pre><code>[root@CentOS ~]# nginx -t
+nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok
+nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
+</code></pre><p>然后重载 Nginx 服务：</p>
+<pre><code>[root@CentOS ~]# nginx -s reload
+</code></pre><p>创建二级域名所属的文件夹（需要root权限）：</p>
+<pre><code>[root@CentOS ~]# cd /usr/local/nginx/html &amp;&amp; mkdir -p test &amp;&amp; cd test
+[root@CentOS test]# vi index.html
+</code></pre><p>给首页文件输入内容：</p>
+<pre><code>Hello! This is a test page!
+</code></pre><p>保存并退出</p>
+<p>这时访问 <a href="http://test.zxy.com" title="http://test.zxy.com" target="_blank" rel="noopener">http://test.zxy.com</a> 即可看到刚刚编写的内容</p>
+<p><img src="https://i.imgur.com/MfzspQ3.png" alt="访问test二级域名"></p>
+<p>如果我们需要配置另一个二级域名 <a href="http://second.zxy.co" title="http://second.zxy.com" target="_blank" rel="noopener">http://second.zxy.com</a> 的话，可以直接在 html 文件夹中创建相应的二级域名所属文件夹：</p>
+<pre><code>[root@CentOS test]# cd /usr/local/nginx/html &amp;&amp; mkdir -p second &amp;&amp; cd second
+[root@CentOS second]# vi index.html
+Hello! This is second subdomain!
+</code></pre><p>保存并退出</p>
+<p>这时访问 <a href="http://second.zxy.com" title="http://second.zxy.com" target="_blank" rel="noopener">http://second.zxy.com</a> 即可看到新域名下的内容</p>
+<blockquote>
+<p>*如有问题请参考：<strong><a href="#4.3">4.3 本地二级域名配置注意事项</a></strong></p>
+</blockquote>
+<p><strong><span id="4.2">4.2 设置HTTP二级域名</span></strong></p>
+<p>修改 Nginx 服务下的 nginx.conf</p>
+<pre><code>[root@CentOS ~]# vi /usr/local/nginx/conf/nginx.conf
+</code></pre><p>将我们在 <a href="#3.6">3.6 配置Nginx的ssl模块</a> 中配置的内容修改为如下配置：</p>
+<pre><code>server {
+    listen       443 default ssl;
+    server_name  zxy.com;
+
+    ssl     on;
+
+    ssl_certificate      /home/yg-zxy/ssl-file/ssl-30-server.crt;
+    ssl_certificate_key  /home/yg-zxy/ssl-file/ssl-30-server.key;
+
+    if ( $host ~* (\b(?!www\b)\w+)\.\w+\.\w+ ) {
+        set $subdomain $1;
+    }
+
+    location / {
+        root   html/$subdomain;
+        index  index.html index.htm;
+    }
+}
+</code></pre><p>保存并退出</p>
+<p>这时访问 <a href="https://test.zxy.com" title="https://test.zxy.com" target="_blank" rel="noopener">https://test.zxy.com</a> 以及 <a href="https://second.zxy.com" title="https://second.zxy.com" target="_blank" rel="noopener">https://second.zxy.com</a> 即可看到HTTPS域名下的内容</p>
+<blockquote>
+<p>*如有问题请参考：<strong><a href="#4.3">4.3 本地二级域名配置注意事项</a></strong></p>
+</blockquote>
+<p><strong><span id="4.3">4.3 本地二级域名配置注意事项</span></strong></p>
+<p><strong><em>注意！！！</em></strong></p>
+<p><strong>有可能在访问 <a href="http://test.zxy.com" title="http://test.zxy.com" target="_blank" rel="noopener">http://test.zxy.com</a> 以及 <a href="http://second.zxy.com" title="http://second.zxy.com" target="_blank" rel="noopener">http://second.zxy.com</a> 时地址可能会被302重定向到 <a href="http://zxy.com" title="http://zxy.com" target="_blank" rel="noopener">http:/zxy.com</a> ，这时需要将二级域名的地址解析加进 hosts 文件中：</strong></p>
+<pre><code>attrib -R C:\WINDOWS\system32\drivers\etc\hosts
+@echo 127.0.0.1 test.zxy.com &gt;&gt;C:\WINDOWS\system32\drivers\etc\hosts
+@echo 127.0.0.1 second.zxy.com &gt;&gt;C:\WINDOWS\system32\drivers\etc\hosts
+</code></pre><p>具体操作请回到 <strong><a href="#3.7">3.7 修改本地hosts文件</a></strong></p>
+<p>在往hosts文件中添加完二级域名地址解析后，关闭浏览器，重新打开访问二级域名即可。</p>
+<blockquote>
+<p><em>参考链接：<a href="https://blog.csdn.net/LBinin/article/details/70188752" target="_blank" rel="noopener">配置服务器 —— Nginx添加多个二级子域名</a></em></p>
+</blockquote>
+<h2 id="五、Nginx-设置反向代理服务至二级域名下"><a href="#五、Nginx-设置反向代理服务至二级域名下" class="headerlink" title="五、Nginx 设置反向代理服务至二级域名下"></a><span id="5">五、Nginx 设置反向代理服务至二级域名下</span></h2><p>如果我们在某个端口运行了一个Web应用程序，比如我们在5000端口下有一个静态Web服务器：</p>
+<p><img src="https://i.imgur.com/LXzkIML.png" alt="某个静态服务器"></p>
+<p>那我们可能在实际需求中不被允许通过端口访问这个Web应用程序，比如在微信小程序的开发中，微信小程序不允许接口的地址带有端口号，那么我们就需要将这个应用服务通过 Nginx 的代理模块来将对 Nginx 的请求转发到该内部端口上。</p>
+<p>首先，修改 Nginx 服务下的 nginx.conf</p>
+<pre><code>[root@CentOS ~]# vi /usr/local/nginx/conf/nginx.conf
+</code></pre><p>然后在我们在 <a href="#3.6">3.6 配置Nginx的ssl模块</a> 配置的内容之前添加如下配置（一定要在之前）：</p>
+<pre><code>server {
+
+    listen          443;
+    server_name     porxy.zxy.com;
+
+    location / {
+            proxy_pass http://127.0.0.1:5000;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection &#39;upgrade&#39;;
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+    }
+
+}
+</code></pre><p>这时访问 <a href="https://proxy.zxy.com" title="https://proxy.zxy.com" target="_blank" rel="noopener">https://proxy.zxy.com</a> 即可看到 Nginx 代理5000端口下的内容</p>
+<blockquote>
+<p><em>参考链接：<a href="https://blog.csdn.net/tujiaw/article/details/70176312?locationNum=10&amp;fps=1" target="_blank" rel="noopener">nginx配置nodejs服务二级域名</a></em></p>
+</blockquote>
+
+        </section>
+
+        
+          <section class="theme-post__card__license mdui-typo">
+            <span>
+              Article License: 
+              
+                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a>
+              
+            </span>
+            <br />
+            <span>Article Permalink: <a href="http://blog.zhuxiaoyi.com/2018/06/25/CentOS 7上安装配置Nginx/">http://blog.zhuxiaoyi.com/2018/06/25/CentOS 7上安装配置Nginx/</a></span>
+            
+              <br />
+              <span>Article Markdown: <a href="http://blog.zhuxiaoyi.com/2018/06/25/CentOS 7上安装配置Nginx/CentOS 7上安装配置Nginx.md">http://blog.zhuxiaoyi.com/2018/06/25/CentOS 7上安装配置Nginx/CentOS 7上安装配置Nginx.md</a></span>
+            
+          </section>
+        
+
+        
+          <section class="mdui-card-actions theme-post__card__actions">
+            
+              <button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-ripple  mdui-color-red" mdui-tooltip="{content: 'Buy me a beer?', position: 'right'}" mdui-dialog="{target: '#donateDialog'}">
+                <i class="mdui-icon fa fa-beer"></i>
+              </button>
+            
+            <div class="theme-spacer"></div>
+            
+            
+          </section>
+        
+
+        
+          
+            <script type="text/javascript">
+              themeRuntime.commentRest.function = function (newIdentifier, newUrl, newTitle) {
+                return
+              }
+            </script>
+          
+        
+      </article>
+      
+        <div class="mdui-color-theme theme-post__toc">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x76EE;&#x5F55;" data-href="#&#x76EE;&#x5F55;"><span class="toc-number"></span> <span class="toc-text">1. &#x76EE;&#x5F55;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E00;&#x3001;&#x9884;&#x5907;&#x5DE5;&#x4F5C;" data-href="#&#x4E00;&#x3001;&#x9884;&#x5907;&#x5DE5;&#x4F5C;"><span class="toc-number"></span> <span class="toc-text">2. &#x4E00;&#x3001;&#x9884;&#x5907;&#x5DE5;&#x4F5C;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E8C;&#x3001;&#x4E0B;&#x8F7D;&#x3001;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;Nginx&#x670D;&#x52A1;" data-href="#&#x4E8C;&#x3001;&#x4E0B;&#x8F7D;&#x3001;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;Nginx&#x670D;&#x52A1;"><span class="toc-number"></span> <span class="toc-text">3. &#x4E8C;&#x3001;&#x4E0B;&#x8F7D;&#x3001;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;Nginx&#x670D;&#x52A1;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E09;&#x3001;&#x81EA;&#x7B7E;&#x540D;&#x8BC1;&#x4E66;&#x914D;&#x7F6E;HTTPS" data-href="#&#x4E09;&#x3001;&#x81EA;&#x7B7E;&#x540D;&#x8BC1;&#x4E66;&#x914D;&#x7F6E;HTTPS"><span class="toc-number"></span> <span class="toc-text">4. &#x4E09;&#x3001;&#x81EA;&#x7B7E;&#x540D;&#x8BC1;&#x4E66;&#x914D;&#x7F6E;HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x56DB;&#x3001;Nginx-&#x8BBE;&#x7F6E;HTTP&#x3001;HTTPS&#x4E8C;&#x7EA7;&#x57DF;&#x540D;" data-href="#&#x56DB;&#x3001;Nginx-&#x8BBE;&#x7F6E;HTTP&#x3001;HTTPS&#x4E8C;&#x7EA7;&#x57DF;&#x540D;"><span class="toc-number"></span> <span class="toc-text">5. &#x56DB;&#x3001;Nginx &#x8BBE;&#x7F6E;HTTP&#x3001;HTTPS&#x4E8C;&#x7EA7;&#x57DF;&#x540D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E94;&#x3001;Nginx-&#x8BBE;&#x7F6E;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x81F3;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x4E0B;" data-href="#&#x4E94;&#x3001;Nginx-&#x8BBE;&#x7F6E;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x81F3;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x4E0B;"><span class="toc-number"></span> <span class="toc-text">6. &#x4E94;&#x3001;Nginx &#x8BBE;&#x7F6E;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x81F3;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x4E0B;</span></a></li></ol>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="theme-spacer"></div>
+
+  
+    <div class="mdui-color-theme theme-post__toc-fab">
+  <button class="mdui-fab mdui-color-theme-accent mdui-ripple mdui-fab-fixed mdui-hidden-md-up" mdui-menu="{target: '#toc-fab-menu', fixed: true}" id="toc-fab">
+    <i class="mdui-icon material-icons">&#xe242;</i>
+  </button>
+  <ul class="mdui-menu mdui-typo theme-post__toc-fab__menu" id="toc-fab-menu" style="padding: 8px;max-height: 80%">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x76EE;&#x5F55;" data-href="#&#x76EE;&#x5F55;"><span class="toc-number"></span> <span class="toc-text">1. &#x76EE;&#x5F55;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E00;&#x3001;&#x9884;&#x5907;&#x5DE5;&#x4F5C;" data-href="#&#x4E00;&#x3001;&#x9884;&#x5907;&#x5DE5;&#x4F5C;"><span class="toc-number"></span> <span class="toc-text">2. &#x4E00;&#x3001;&#x9884;&#x5907;&#x5DE5;&#x4F5C;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E8C;&#x3001;&#x4E0B;&#x8F7D;&#x3001;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;Nginx&#x670D;&#x52A1;" data-href="#&#x4E8C;&#x3001;&#x4E0B;&#x8F7D;&#x3001;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;Nginx&#x670D;&#x52A1;"><span class="toc-number"></span> <span class="toc-text">3. &#x4E8C;&#x3001;&#x4E0B;&#x8F7D;&#x3001;&#x5B89;&#x88C5;&#x4EE5;&#x53CA;&#x914D;&#x7F6E;Nginx&#x670D;&#x52A1;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E09;&#x3001;&#x81EA;&#x7B7E;&#x540D;&#x8BC1;&#x4E66;&#x914D;&#x7F6E;HTTPS" data-href="#&#x4E09;&#x3001;&#x81EA;&#x7B7E;&#x540D;&#x8BC1;&#x4E66;&#x914D;&#x7F6E;HTTPS"><span class="toc-number"></span> <span class="toc-text">4. &#x4E09;&#x3001;&#x81EA;&#x7B7E;&#x540D;&#x8BC1;&#x4E66;&#x914D;&#x7F6E;HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x56DB;&#x3001;Nginx-&#x8BBE;&#x7F6E;HTTP&#x3001;HTTPS&#x4E8C;&#x7EA7;&#x57DF;&#x540D;" data-href="#&#x56DB;&#x3001;Nginx-&#x8BBE;&#x7F6E;HTTP&#x3001;HTTPS&#x4E8C;&#x7EA7;&#x57DF;&#x540D;"><span class="toc-number"></span> <span class="toc-text">5. &#x56DB;&#x3001;Nginx &#x8BBE;&#x7F6E;HTTP&#x3001;HTTPS&#x4E8C;&#x7EA7;&#x57DF;&#x540D;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link mdui-list-item mdui-ripple theme-post__toc__content__link" href="#&#x4E94;&#x3001;Nginx-&#x8BBE;&#x7F6E;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x81F3;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x4E0B;" data-href="#&#x4E94;&#x3001;Nginx-&#x8BBE;&#x7F6E;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x81F3;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x4E0B;"><span class="toc-number"></span> <span class="toc-text">6. &#x4E94;&#x3001;Nginx &#x8BBE;&#x7F6E;&#x53CD;&#x5411;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x81F3;&#x4E8C;&#x7EA7;&#x57DF;&#x540D;&#x4E0B;</span></a></li></ol>
+  </ul>
+</div>
+
+  
+
+  
+    <div class="theme-post__pagination mdui-color-theme">
+  
+    <div class="theme-spacer mdui-hidden-xs"></div>
+  
+
+  
+    <div class="theme-post__pagination__next mdui-ripple mdui-valign">
+      <a href="/2018/06/25/如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）/" class="theme-post__pagination__next__content mdui-text-right">
+        <div>
+          <span class="mdui-typo-body-2-opacity mdui-text-center">Older Post</span>
+          <i class="mdui-icon material-icons mdui-text-center">&#xe5cc;</i>
+        </div>
+        <div class="mdui-typo-title mdui-text-truncate">
+          如何建站（三） - 在Ubuntu 16.04上搭建Web环境（LAMP）
+        </div>
+      </a>
+    </div>
+    
+</div>
+
+  
+
+  
+    <div class="mdui-dialog" id="donateDialog">
+      <div class="mdui-dialog-title">Buy me a beer?</div>
+      <div class="mdui-dialog-content">
+        <div class="mdui-list">
+          
+            <a href="/img/avatar.png" title="wechat" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-wechat mdui-text-center"></i>&emsp;
+              
+              
+              
+              wechat
+            </a>
+          
+            <a href="https://paypal.com" title="paypay" class="mdui-list-item mdui-ripple" target="_blank">
+              
+                <i class="mdui-list-item-icon mdui-icon fa fa-paypal mdui-text-center"></i>&emsp;
+              
+              
+              
+              paypay
+            </a>
+          
+        </div>
+      </div>
+      <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple mdui-ripple" mdui-dialog-close>Cancel</button>
+      </div>
+    </div>
+  
+</div>
+<script type="text/javascript">
+  themeRuntime.scriptsMap.post = [];
+  if (document.querySelector('.theme-post__toc-fab__menu > ol') !== null && document.querySelector('.theme-post__toc > ol') !== null) {
+    tocHighlight()
+    function tocHighlight() {
+      var timer;
+      function doWork() {
+        listens.forEach(function(value, index) {
+          value[1]();
+          value[0].classList.remove("mdui-list-item-active");
+        })
+        let actionToc = (listens[listens.reduce(function(r, v, index) {
+          if (v[2] == true) {
+            return index;
+          } else return r;
+        }, undefined)] || [])[0] || listens[0][0];
+        actionToc.classList.add("mdui-list-item-active");
+        if(actionToc.getClientRects().length == 0)return;
+        showToc(actionToc);
+      }
+      function showToc(toc) {
+        let offsetTop = toc.getClientRects()[0].top - cardToc.getClientRects()[0].top - 40;
+        let offsetBottom = toc.getClientRects()[0].bottom - cardToc.getClientRects()[0].bottom + 40;
+        let offset = 0;
+        if (offsetTop < 0) offset = offsetTop;
+        if (offsetBottom > 0) offset = offsetBottom;
+        var targetTop = Math.max(0, Math.min(cardToc.scrollTop + offset, toclist.offsetHeight - cardToc.offsetHeight));
+        clearInterval(timer);
+        timer = setInterval(function() {
+          var now = cardToc.scrollTop;
+          var speed = (targetTop - now) / 10;
+          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+          if (Math.abs(now - targetTop) < 1) {
+            clearInterval(timer);
+          }
+          cardToc.scrollTop = now + speed;
+        }, 30);
+      }
+      var listens = [];
+      var cardToc = document.querySelector('.theme-post__toc');
+      var links = cardToc.querySelectorAll(".theme-post__toc__content__link");
+      var toclist = document.querySelector(".theme-post__toc > ol");
+      Array.prototype.forEach.call(links, function(value, index) {
+        var id = (value.getAttribute("href") || "#").slice(1);
+        var element = document.getElementById(id);
+        listens.push([value, function() {
+          var readed = false;
+          var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+          if (element.offsetTop <= scrollTop + element.clientHeight + 64) {
+            readed = true;
+          } else {
+            readed = false;
+          }
+          listens[index][2] = readed;
+        }, false])
+      })
+      doWork();
+      window.addEventListener("scroll", doWork)
+      var listener = {
+        function:  doWork,
+        event: 'scroll',
+        el: window,
+        removed: false
+      }
+      themeRuntime.scriptsMap.post.push(listener)
+    }
+  }
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var postLastModifiedDate = 1529920770956
+    var today = (new Date()).getTime()
+    var difference = Math.floor((today - postLastModifiedDate)/(24*60*60*1000))
+    if (difference >= 100) {
+      document.querySelector('.theme-post__card__warning').style.display = 'block'
+      document.querySelector('#content-warning').textContent = difference
+    }
+  })();
+</script>
+
+<script type="text/javascript">
+  var images = document.querySelectorAll('.theme-post__card__content img')
+  for (i = 0; i < images.length; i++) {
+    //console.log('image added', i)
+    images[i].addEventListener("click", openLG);
+    var listener = {
+      function:  openLG,
+      event: 'click',
+      el: images[i],
+      removed: false
+    }
+    themeRuntime.scriptsMap.post.push(listener)
+  }
+  function openLG() {
+    var img_src = this.getAttribute('src');
+    var img_alt = this.getAttribute('alt');
+    lightGallery(this, {
+      dynamic: true,
+      counter: false,
+      dynamicEl: [{
+        "src": img_src,
+        'subHtml': "<span author>HadesZ</span><div descr>" + img_alt + "</div>"
+      }],
+    });
+  }
+</script>
+
+
+
+
+      </div>
+    </div>
+  </main>
+
+  <div id="outdated" style="z-index: 9999;">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+  </div>
+  <!-- import js -->
+
+
+  <script src="/js/outdatedbrowser.min.js"></script>
+
+
+
+  
+    <script src="/js/js.barba.min.js"></script>
+    <script type="text/javascript">
+      Barba.Utils.errorPageUrl = '/404.html';
+    </script>
+  
+
+
+<!-- theme js -->
+<script type="text/javascript">
+  (function() {
+    var appbarTopFlag = false;
+    var appbarEl = document.querySelector('.theme-appbar');
+    function appbarShadow() {
+      var bodyScrolled = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+      if (bodyScrolled > 0 && !appbarTopFlag) {
+        appbarEl.classList.add('theme-appbar--shadow');
+        appbarTopFlag = true;
+      } else if (bodyScrolled === 0 && appbarTopFlag) {
+        appbarEl.classList.remove('theme-appbar--shadow');
+        appbarTopFlag = false;
+      }
+    }
+    appbarShadow()
+    window.addEventListener('scroll', appbarShadow);
+  })();
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+  document.querySelector('body').classList.add('theme-loaded')
+</script>
+
+
+</body>
+</html>
